@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Md Hasabul Hashib | Electrical Engineer</title>
+<meta name="description" content="Portfolio of Md Hasabul Hashib, electrical engineer with 10+ years in transformer manufacturing, high-voltage testing and substation projects. Based in Melbourne, Australia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f8fa; --surface:#ffffff; --text:#14181f; --muted:#5a6472;
+  --line:#e3e7ed; --accent:#d97706; --accent-soft:#fef3c7; --navy:#0f2742;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0b1118; --surface:#121a24; --text:#e8edf3; --muted:#9aa6b5;
+    --line:#223040; --accent:#f59e0b; --accent-soft:#2a2112; --navy:#0a1a2c;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:60px}
+.logo{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:1.15rem;color:var(--text)}
+.logo span{color:var(--accent)}
+nav ul{list-style:none;display:flex;gap:20px}
+nav ul a{color:var(--muted);font-size:.9rem;font-weight:500}
+nav ul a:hover{color:var(--text);text-decoration:none}
+@media(max-width:720px){nav ul{display:none}}
+
+.hero{background:linear-gradient(135deg,var(--navy),#163a5f);color:#fff;padding:90px 0 70px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-60px;top:-40px;width:380px;height:380px;
+  background:repeating-linear-gradient(90deg,rgba(245,158,11,.18) 0 3px,transparent 3px 22px);border-radius:50%;opacity:.6}
+.hero .wrap{position:relative;z-index:1}
+.tag{display:inline-block;background:rgba(245,158,11,.18);color:#fbbf24;border:1px solid rgba(245,158,11,.4);
+  padding:4px 12px;border-radius:999px;font-size:.78rem;font-weight:600;letter-spacing:.04em;margin-bottom:18px}
+.hero h1{font-family:"Space Grotesk",sans-serif;font-size:clamp(2.1rem,6vw,3.4rem);line-height:1.1;margin-bottom:10px}
+.hero .role{font-size:1.1rem;color:#fbbf24;font-weight:600;margin-bottom:14px}
+.hero p.lead{font-size:1.08rem;color:#cbd5e1;max-width:660px;margin-bottom:28px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:11px 22px;border-radius:8px;font-weight:600;font-size:.95rem}
+.btn.primary{background:#f59e0b;color:#111}
+.btn.ghost{border:1px solid rgba(255,255,255,.35);color:#fff}
+.btn:hover{text-decoration:none;opacity:.9}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:46px}
+@media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:16px}
+.stat b{display:block;font-family:"Space Grotesk",sans-serif;font-size:1.7rem;color:#fbbf24;line-height:1.1}
+.stat span{font-size:.84rem;color:#cbd5e1}
+
+section{padding:72px 0}
+section.alt{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+h2{font-family:"Space Grotesk",sans-serif;font-size:1.8rem;margin-bottom:8px}
+.sub{color:var(--muted);margin-bottom:34px}
+.bar{width:44px;height:4px;background:var(--accent);border-radius:2px;margin-bottom:16px}
+
+.about-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:36px}
+@media(max-width:760px){.about-grid{grid-template-columns:1fr}}
+.about-grid p{margin-bottom:14px}
+.facts{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px;align-self:start}
+.facts div{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+.facts div:last-child{border:none}
+.facts span:first-child{color:var(--muted)}
+.facts span:last-child{font-weight:600;text-align:right}
+
+.timeline{border-left:2px solid var(--line);margin-left:6px}
+.job{position:relative;padding:0 0 34px 28px}
+.job:last-child{padding-bottom:0}
+.job::before{content:"";position:absolute;left:-8px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--accent);border:3px solid var(--surface)}
+.job h3{font-size:1.1rem}
+.job .co{font-weight:600;color:var(--accent)}
+.job .meta{color:var(--muted);font-size:.88rem;margin-bottom:8px}
+.job ul{padding-left:18px}
+.job li{margin-bottom:4px;font-size:.95rem}
+.roles{margin:6px 0 10px}
+.roles div{font-size:.92rem}
+.roles div b{font-weight:600}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px;display:flex;flex-direction:column;transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-3px);border-color:var(--accent)}
+.card .kind{font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.card h3{font-size:1.06rem;margin-bottom:10px}
+.card p{color:var(--muted);font-size:.93rem;flex:1}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.chip{background:var(--accent-soft);color:var(--text);font-size:.76rem;padding:3px 10px;border-radius:999px;font-weight:500}
+.sec-label{font-family:"Space Grotesk",sans-serif;font-size:1.15rem;margin:40px 0 16px}
+.sec-label:first-of-type{margin-top:0}
+
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.skill-box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:22px}
+.skill-box h3{font-size:1rem;margin-bottom:12px}
+.skill-box .chips{margin-top:0}
+
+.edu-list{display:grid;gap:14px}
+.edu{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 22px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.edu h3{font-size:1.02rem}
+.edu .school{color:var(--muted);font-size:.92rem}
+.edu .yr{font-weight:600;color:var(--accent);font-size:.9rem;white-space:nowrap}
+
+.certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.cert{background:var(--bg);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:14px 16px}
+.cert b{display:block;font-size:.95rem}
+.cert span{color:var(--muted);font-size:.85rem}
+
+.contact{background:var(--navy);color:#fff;text-align:center}
+.contact h2{color:#fff}
+.contact .sub{color:#cbd5e1}
+.contact .btns{justify-content:center}
+footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="logo">Hashib<span>.</span></a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <span class="tag">MELBOURNE, AUSTRALIA · ENGINEERS AUSTRALIA MEMBER</span>
+    <h1>Md Hasabul Hashib</h1>
+    <div class="role">Electrical Engineer · Transformers · Substations · Power Systems</div>
+    <p class="lead">Electrical engineer with 10+ years of international experience in transformer manufacturing, high-voltage testing and substation projects. Currently at Ironcore Transformers in Melbourne and completing a Master of Engineering (EEE) at CQUniversity.</p>
+    <div class="btns">
+      <a class="btn primary" href="#projects">View my work</a>
+      <a class="btn ghost" href="#contact">Get in touch</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>10+</b><span>Years in electrical engineering</span></div>
+      <div class="stat"><b>22,000</b><span>Transformers produced in FY 2019–20</span></div>
+      <div class="stat"><b>4,000 kVA</b><span>Largest substation transformer delivered</span></div>
+      <div class="stat"><b>ISO 9001</b><span>Quality system experience</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="bar"></div>
+    <h2>About me</h2>
+    <p class="sub">Hands-on transformer engineer with production leadership experience.</p>
+    <div class="about-grid">
+      <div>
+        <p>I'm an electrical engineer specialising in distribution transformers, from design and coil winding through to high-voltage testing, commissioning and repair. Over eight years at Sena Kalyan Electric Industries in Bangladesh, I grew from Assistant Engineer to Deputy Manager (Engineering), leading production teams that delivered record output and executing high-capacity substation projects.</p>
+        <p>Since July 2026 I've been working as an electrical engineer at <strong>Ironcore Transformers</strong> in Preston, Victoria, across transformer design, production, testing, QC and repair, while studying a Master of Engineering (Electrical &amp; Electronic) at CQUniversity.</p>
+        <p>I'm seeking to grow my career in Australia's power, utilities, manufacturing and infrastructure sectors, with a focus on transformers and power systems.</p>
+      </div>
+      <div class="facts">
+        <div><span>Location</span><span>Melbourne, VIC</span></div>
+        <div><span>Current role</span><span>Electrical Engineer</span></div>
+        <div><span>Employer</span><span>Ironcore Transformers</span></div>
+        <div><span>Study</span><span>MEng (EEE), CQU</span></div>
+        <div><span>Specialty</span><span>Transformers &amp; HV testing</span></div>
+        <div><span>Membership</span><span>Engineers Australia</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="alt">
+  <div class="wrap">
+    <div class="bar"></div>
+    <h2>Experience</h2>
+    <p class="sub">10+ years across transformer manufacturing, substations and power equipment.</p>
+    <div class="timeline">
+
+      <div class="job">
+        <h3>Electrical Engineer</h3>
+        <div class="co">Ironcore Transformers Pty Ltd</div>
+        <div class="meta">Preston, Victoria, Australia · Jul 2026 – Present</div>
+        <ul>
+          <li>Transformer design, production, coil winding and assembly</li>
+          <li>Transformer testing, quality control and repair</li>
+          <li>Digitising common transformer designs into a structured design and costing data sheet</li>
+          <li>Engineering support for railway signalling products and production process improvements</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <h3>Sena Kalyan Electric Industries</h3>
+        <div class="co">Transformer Manufacturing &amp; Substation Projects</div>
+        <div class="meta">Chattogram, Bangladesh · Dec 2017 – Feb 2026 · 8+ years</div>
+        <div class="roles">
+          <div><b>Deputy Manager (Engineering)</b> · Jul 2025 – Feb 2026</div>
+          <div><b>Assistant Engineer</b> · Dec 2017 – Jul 2025</div>
+        </div>
+        <ul>
+          <li>Led design, testing and production of single- and three-phase distribution transformers and substation panels</li>
+          <li>Delivered record production output: 22,000 units in FY 2019–20 and 6,000 units in 2025</li>
+          <li>Managed end-to-end substation projects including HT/LT lines, switchgear, metering and PFI plants</li>
+          <li>HV testing and commissioning; designed transformer coils and industrial motors</li>
+          <li>Improved OHS and ISO 9001 QMS compliance through audits and process updates</li>
+          <li>Led emergency maintenance, scheduling, materials procurement and team coordination</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <h3>Sales &amp; Marketing Engineer</h3>
+        <div class="co">Techsol Engineering Ltd</div>
+        <div class="meta">Dhaka, Bangladesh · Jul 2017 – Nov 2017</div>
+        <ul>
+          <li>Designed electrical single-line diagrams (SLDs) and prepared cost estimates for sites</li>
+          <li>Serviced diesel generators and emergency power systems (AVR, ATS, MTS)</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <h3>Assistant Engineer</h3>
+        <div class="co">Digital Energy Limited</div>
+        <div class="meta">Dhaka, Bangladesh · Jan 2017 – Jun 2017</div>
+        <ul>
+          <li>Technical guidance on 33 kV, 11 kV and 415 V systems</li>
+          <li>Cost estimation and marketing for transformers, HT/LT switchgear and PFI panels</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <h3>Sales &amp; Service Engineer</h3>
+        <div class="co">Biosys Technologies Ltd</div>
+        <div class="meta">Dhaka, Bangladesh · Jan 2015 – Nov 2016</div>
+        <ul>
+          <li>Installed, commissioned and serviced pathology equipment in major hospitals</li>
+          <li>Diagnosed hardware and software faults; trained medical staff and supported demonstrations</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <h3>Marketing Executive</h3>
+        <div class="co">Energypac Electronics Ltd</div>
+        <div class="meta">Dhaka, Bangladesh · Nov 2012 – Apr 2013</div>
+        <ul>
+          <li>Marketed switches, sockets and circuit breakers; site inspections, load calculations and quotations</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="bar"></div>
+    <h2>Projects</h2>
+    <p class="sub">Substation delivery, industry work and academic research.</p>
+
+    <h3 class="sec-label">Substation projects</h3>
+    <div class="cards">
+      <div class="card">
+        <div class="kind">Commercial tower</div>
+        <h3>Gomti Tower</h3>
+        <p>3 × 2000 kVA transformers with full substation, busbar trunking (BBT) and 3 × 650 kVA standby generators.</p>
+        <div class="chips"><span class="chip">6,000 kVA</span><span class="chip">Substation</span><span class="chip">BBT</span><span class="chip">Generators</span></div>
+      </div>
+      <div class="card">
+        <div class="kind">Commercial tower</div>
+        <h3>CSD Tower</h3>
+        <p>4000 kVA dry-type transformer and substation with busbar trunking.</p>
+        <div class="chips"><span class="chip">4,000 kVA</span><span class="chip">Dry-type</span><span class="chip">BBT</span></div>
+      </div>
+      <div class="card">
+        <div class="kind">Industrial</div>
+        <h3>Sena Flour Mills</h3>
+        <p>3000 kVA transformer and substation for an industrial flour milling facility.</p>
+        <div class="chips"><span class="chip">3,000 kVA</span><span class="chip">Industrial</span><span class="chip">Substation</span></div>
+      </div>
+      <div class="card">
+        <div class="kind">Public infrastructure</div>
+        <h3>Chattogram Cantonment Board</h3>
+        <p>1000 kVA transformer and substation installation and commissioning.</p>
+        <div class="chips"><span class="chip">1,000 kVA</span><span class="chip">Commissioning</span></div>
+      </div>
+    </div>
+
+    <h3 class="sec-label">Industry &amp; academic work</h3>
+    <div class="cards">
+      <div class="card">
+        <div class="kind">Industry · Ironcore</div>
+        <h3>Transformer Design Database</h3>
+        <p>Digitising a large archive of hand-written transformer design records into a searchable design data sheet with integrated costing, focused on the most common designs.</p>
+        <div class="chips"><span class="chip">Transformer design</span><span class="chip">Excel</span><span class="chip">Costing</span></div>
+      </div>
+      <div class="card">
+        <div class="kind">Academic · Power Systems</div>
+        <h3>320 MW Solar + 470 MW Pumped Hydro Grid Connection</h3>
+        <p>Modelled a PV farm and pumped hydro plant in North Queensland connected via a 420 km, 275 kV line to a four-state Australian grid model. Load flow, exciter and PSS tuning, critical clearing time and ROCOF analysis against NER requirements.</p>
+        <div class="chips"><span class="chip">PSS®E</span><span class="chip">Load flow</span><span class="chip">Stability</span><span class="chip">NER</span></div>
+      </div>
+      <div class="card">
+        <div class="kind">Academic · Communications</div>
+        <h3>Long-Haul 10 Gb/s Fibre Link</h3>
+        <p>Designed and simulated a long-haul single-mode fibre link in VPI Photonics, evaluating BER and Q-factor performance.</p>
+        <div class="chips"><span class="chip">VPI Photonics</span><span class="chip">Optical fibre</span><span class="chip">BER analysis</span></div>
+      </div>
+      <div class="card">
+        <div class="kind">Research · 2027</div>
+        <h3>Master's Research Project</h3>
+        <p>Upcoming research in transformers and power systems at CQUniversity, running across Term 1 and Term 2 of 2027.</p>
+        <div class="chips"><span class="chip">Transformers</span><span class="chip">Power systems</span><span class="chip">Research</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="alt">
+  <div class="wrap">
+    <div class="bar"></div>
+    <h2>Skills</h2>
+    <p class="sub">Technical expertise, test equipment and tools.</p>
+    <div class="skills">
+      <div class="skill-box">
+        <h3>Transformer Engineering</h3>
+        <div class="chips"><span class="chip">Distribution transformer design</span><span class="chip">Single &amp; three-phase</span><span class="chip">Coil winding</span><span class="chip">Assembly &amp; QC</span><span class="chip">Repair</span><span class="chip">Core &amp; copper loss</span><span class="chip">% Impedance</span></div>
+      </div>
+      <div class="skill-box">
+        <h3>Testing &amp; Commissioning</h3>
+        <div class="chips"><span class="chip">HV &amp; Lightning Impulse</span><span class="chip">Partial Discharge</span><span class="chip">TTR</span><span class="chip">SFRA</span><span class="chip">DGA</span><span class="chip">Tan Delta</span><span class="chip">IR</span><span class="chip">DVDF</span><span class="chip">Oil testing &amp; filtration</span></div>
+      </div>
+      <div class="skill-box">
+        <h3>Substation &amp; Power Systems</h3>
+        <div class="chips"><span class="chip">HT/LT line installation</span><span class="chip">Switchgear</span><span class="chip">Metering</span><span class="chip">PFI plants</span><span class="chip">SLD design</span><span class="chip">BOQ estimation</span><span class="chip">Power system analysis</span></div>
+      </div>
+      <div class="skill-box">
+        <h3>Software &amp; Tools</h3>
+        <div class="chips"><span class="chip">PSS®E</span><span class="chip">AutoCAD</span><span class="chip">MATLAB</span><span class="chip">VPI Photonics</span><span class="chip">FreeCAD</span><span class="chip">Python</span><span class="chip">C/C++</span><span class="chip">PLC</span><span class="chip">Excel</span><span class="chip">MS Project</span></div>
+      </div>
+      <div class="skill-box">
+        <h3>Operations &amp; Leadership</h3>
+        <div class="chips"><span class="chip">Production management</span><span class="chip">Process optimisation</span><span class="chip">Maintenance planning</span><span class="chip">Fault diagnosis</span><span class="chip">Team leadership</span><span class="chip">Training</span><span class="chip">OHS &amp; QMS</span></div>
+      </div>
+      <div class="skill-box">
+        <h3>Manufacturing Equipment</h3>
+        <div class="chips"><span class="chip">Winding machines</span><span class="chip">Core cutting</span><span class="chip">Slitting lines</span><span class="chip">Oil filtration plants</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="bar"></div>
+    <h2>Education</h2>
+    <p class="sub">Academic qualifications.</p>
+    <div class="edu-list">
+      <div class="edu">
+        <div><h3>Master of Engineering, Electrical &amp; Electronic Engineering</h3><div class="school">Central Queensland University (CQUniversity), Melbourne</div></div>
+        <div class="yr">2026 – 2027</div>
+      </div>
+      <div class="edu">
+        <div><h3>B.Sc. in Electrical &amp; Electronic Engineering</h3><div class="school">Bangladesh University of Business and Technology</div></div>
+        <div class="yr">2012 – 2016</div>
+      </div>
+      <div class="edu">
+        <div><h3>Diploma in Engineering, Electronics</h3><div class="school">Rajshahi Polytechnic Institute</div></div>
+        <div class="yr">2007 – 2011</div>
+      </div>
+    </div>
+
+    <h3 class="sec-label" style="margin-top:46px">Certifications &amp; licences</h3>
+    <div class="certs">
+      <div class="cert"><b>Electrical Supervisor Licence (A, B, C)</b><span>Bangladesh</span></div>
+      <div class="cert"><b>Transformer Design &amp; Production</b><span>Magnitude Transformer Ltd, India</span></div>
+      <div class="cert"><b>ISO 9001 Quality Management System</b><span>QMS training</span></div>
+      <div class="cert"><b>Public Procurement Training</b><span>Bangladesh Institute of Management</span></div>
+      <div class="cert"><b>Construction White Card</b><span>Victoria, Australia</span></div>
+      <div class="cert"><b>Certificate II in Security Operations &amp; First Aid</b><span>Victoria, Australia</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2>Let's connect</h2>
+    <p class="sub">Open to opportunities in Australia's power, utilities, manufacturing and infrastructure sectors.</p>
+    <div class="btns">
+      <a class="btn primary" href="mailto:hashibcq.au@gmail.com">hashibcq.au@gmail.com</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/md-hasabul-hashib-61565617a/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Md Hasabul Hashib · Melbourne, Australia · References available on request</footer>
+
+</body>
+</html>

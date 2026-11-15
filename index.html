@@ -115,6 +115,19 @@ h2{font-family:"Space Grotesk",sans-serif;font-size:1.8rem;margin-bottom:8px}
 .contact .sub{color:#cbd5e1}
 .contact .btns{justify-content:center}
 footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
+
+.hero-grid{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+.avatar{width:220px;height:220px;border-radius:50%;object-fit:cover;border:4px solid #f59e0b;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+@media(max-width:760px){.hero-grid{grid-template-columns:1fr}.avatar{width:150px;height:150px;order:-1}}
+.banner{display:block;width:100%;height:auto;border-bottom:1px solid var(--line)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.gallery figure{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:zoom-in}
+.gallery img{width:100%;height:240px;object-fit:cover;display:block;transition:transform .3s}
+.gallery figure:hover img{transform:scale(1.04)}
+.gallery figcaption{padding:12px 14px;font-size:.88rem;color:var(--muted)}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:50;padding:20px;cursor:zoom-out}
+.lightbox.open{display:flex}
+.lightbox img{max-width:100%;max-height:90vh;border-radius:8px}
 </style>
 </head>
 <body>
@@ -126,6 +139,7 @@ footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#gallery">Gallery</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -135,6 +149,8 @@ footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
 
 <header class="hero" id="top">
   <div class="wrap">
+    <div class="hero-grid">
+    <div>
     <span class="tag">MELBOURNE, AUSTRALIA · ENGINEERS AUSTRALIA MEMBER</span>
     <h1>Md Hasabul Hashib</h1>
     <div class="role">Electrical Engineer · Transformers · Substations · Power Systems</div>
@@ -142,6 +158,9 @@ footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
     <div class="btns">
       <a class="btn primary" href="#projects">View my work</a>
       <a class="btn ghost" href="#contact">Get in touch</a>
+    </div>
+    </div>
+    <img class="avatar" src="images/profile.jpg" alt="Md Hasabul Hashib">
     </div>
     <div class="stats">
       <div class="stat"><b>10+</b><span>Years in electrical engineering</span></div>
@@ -151,6 +170,8 @@ footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
     </div>
   </div>
 </header>
+
+<img class="banner" src="images/banner.jpg" alt="Power systems, transformer manufacturing and testing, substation projects, quality and reliability">
 
 <section id="about">
   <div class="wrap">
@@ -319,7 +340,23 @@ footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
   </div>
 </section>
 
-<section id="skills" class="alt">
+<section id="gallery" class="alt">
+  <div class="wrap">
+    <div class="bar"></div>
+    <h2>Work in action</h2>
+    <p class="sub">On the factory floor, on site and in training. Click a photo to enlarge.</p>
+    <div class="gallery">
+      <figure><img src="images/coil-production.jpg" alt="Transformer coil insulation production" loading="lazy"><figcaption>Supervising transformer coil insulation preparation on the production floor</figcaption></figure>
+      <figure><img src="images/site-autocad.jpg" alt="Reviewing AutoCAD drawings on site" loading="lazy"><figcaption>Reviewing electrical layout drawings in AutoCAD at a substation project site</figcaption></figure>
+      <figure><img src="images/factory-tour.jpg" alt="Leading a factory tour" loading="lazy"><figcaption>Leading a tour of the transformer manufacturing facility for visiting officials</figcaption></figure>
+      <figure><img src="images/factory-inspection.jpg" alt="Factory inspection visit" loading="lazy"><figcaption>Factory inspection visit with senior management and officials</figcaption></figure>
+      <figure><img src="images/site-visit-team.jpg" alt="Project site visit with team" loading="lazy"><figcaption>Project site visit with the engineering and client team</figcaption></figure>
+      <figure><img src="images/certificate.jpg" alt="Receiving training certificate" loading="lazy"><figcaption>Receiving a professional training certificate</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
   <div class="wrap">
     <div class="bar"></div>
     <h2>Skills</h2>
@@ -353,7 +390,7 @@ footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
   </div>
 </section>
 
-<section id="education">
+<section id="education" class="alt">
   <div class="wrap">
     <div class="bar"></div>
     <h2>Education</h2>
@@ -398,5 +435,12 @@ footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
 
 <footer>© 2026 Md Hasabul Hashib · Melbourne, Australia · References available on request</footer>
 
+<div class="lightbox" id="lb"><img alt=""></div>
+<script>
+const lb=document.getElementById('lb'),li=lb.querySelector('img');
+document.querySelectorAll('.gallery img').forEach(i=>i.addEventListener('click',()=>{li.src=i.src;li.alt=i.alt;lb.classList.add('open')}));
+lb.addEventListener('click',()=>lb.classList.remove('open'));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('open')});
+</script>
 </body>
 </html>

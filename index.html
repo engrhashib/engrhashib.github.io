@@ -277,6 +277,19 @@ section:not(.contact)::before{content:"";position:absolute;top:0;left:0;right:0;
 .hero::before{content:"";position:absolute;inset:-20%;background:radial-gradient(500px 300px at 20% 30%,rgba(59,130,246,.18),transparent 60%),radial-gradient(500px 320px at 80% 70%,rgba(245,158,11,.14),transparent 60%);animation:aurora 14s ease-in-out infinite alternate;pointer-events:none}
 @keyframes aurora{to{transform:translate(6%,-4%) scale(1.1)}}
 .hero .wrap{text-shadow:0 2px 12px rgba(7,22,42,.6)}
+.lead-in{font-family:"Space Grotesk",sans-serif;font-size:1.3rem;line-height:1.4;margin-bottom:18px!important}
+.lead-in strong{color:var(--accent)}
+.about-grid strong{font-weight:600}
+.pull{margin:22px 0 0;padding:16px 20px;border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0;font-family:"Space Grotesk",sans-serif;font-size:1.08rem;font-style:italic;color:var(--text)}
+.bring{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+@media(max-width:900px){.bring{grid-template-columns:1fr 1fr}}@media(max-width:520px){.bring{grid-template-columns:1fr}}
+.bring-c{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;position:relative;overflow:hidden;transition:transform .25s,border-color .25s}
+.bring-c:hover{transform:translateY(-4px);border-color:var(--accent)}
+.bring-c::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(#ef4444,#fbbf24,#3b82f6)}
+.bi{font-size:1.6rem;display:block;margin-bottom:8px}
+@media(min-width:761px){.about-grid .facts{position:sticky;top:84px}}
+.bring-c h3{font-family:"Space Grotesk",sans-serif;font-size:1.1rem;margin-bottom:6px}
+.bring-c p{font-size:.9rem;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -335,12 +348,14 @@ section:not(.contact)::before{content:"";position:absolute;top:0;left:0;right:0;
   <div class="wrap">
     <div class="bar"></div>
     <h2>About me</h2>
-    <p class="sub">Hands-on transformer engineer with production leadership experience.</p>
+    <p class="sub">From the winding floor to the substation: a transformer engineer who builds, tests, leads and innovates.</p>
     <div class="about-grid">
       <div>
-        <p>I'm an electrical engineer specialising in distribution transformers, from design and coil winding through to high-voltage testing, commissioning and repair. Over eight years at Sena Kalyan Electric Industries in Bangladesh, I grew from Assistant Engineer to Deputy Manager (Engineering), leading production teams that delivered record output and executing high-capacity substation projects.</p>
-        <p>Since July 2026 I've been working as an electrical engineer at <strong>Ironcore Transformers</strong> in Preston, Victoria, across transformer design, production, testing, QC and repair, while studying a Master of Engineering (Electrical &amp; Electronic) at CQUniversity.</p>
-        <p>I'm seeking to grow my career in Australia's power, utilities, manufacturing and infrastructure sectors, with a focus on transformers and power systems.</p>
+        <p class="lead-in">For more than a decade, my work has revolved around one machine that quietly powers the modern world: <strong>the transformer</strong>.</p>
+        <p>I've designed them, wound them, assembled them, tested them under high voltage and commissioned them into live substations. At <strong>Sena Kalyan Electric Industries</strong> in Bangladesh, I rose from Assistant Engineer to <strong>Deputy Manager (Engineering)</strong>, leading the teams behind a record <strong>22,000 transformers in a single financial year</strong>. I delivered my largest substation, a <strong>6,000 kVA installation for Gomti Tower</strong> with three 2,000 kVA transformers, 750 kVA diesel generator sets and busbar link, manufactured transformers up to <strong>3,000 kVA</strong>, and operated a <strong>4,000 kVA dry-type unit</strong>.</p>
+        <p>Along the way I learned that great engineering is as much about people and process as it is about physics: running safe and efficient production lines, raising <strong>ISO 9001</strong> quality standards, training teams, evaluating machinery with overseas suppliers, and solving problems on the shop floor when the pressure is on.</p>
+        <p>Today I'm an electrical engineer at <strong>Ironcore Transformers</strong> in Melbourne, working across design, production, testing, QC and repair. I also built <strong>Hashib Transformer Design</strong>, my own app that turns hand-written design sheets into a searchable, costed design library. Alongside work, I'm completing a <strong>Master of Engineering (Electrical &amp; Electronic) at CQUniversity</strong>, with a research project in transformers and power systems from 2027.</p>
+        <blockquote class="pull">"I don't just want to build transformers. I want to understand them completely, improve how they're made, and help power Australia's energy future."</blockquote>
       </div>
       <div class="facts reveal">
         <div><span>Location</span><span>Melbourne, VIC</span></div>
@@ -350,6 +365,12 @@ section:not(.contact)::before{content:"";position:absolute;top:0;left:0;right:0;
         <div><span>Specialty</span><span>Transformers &amp; HV testing</span></div>
         <div><span>Membership</span><span>Engineers Australia</span></div>
       </div>
+    </div>
+    <div class="bring">
+      <div class="bring-c reveal"><span class="bi">⚙️</span><h3>Design</h3><p>Single- and three-phase distribution transformer design, from core and winding calculations to losses, impedance and costing.</p></div>
+      <div class="bring-c reveal"><span class="bi">⚡</span><h3>Test &amp; Commission</h3><p>HV, impulse, TTR, IR, SFRA, DGA, tan delta and oil testing, through to substation commissioning.</p></div>
+      <div class="bring-c reveal"><span class="bi">👥</span><h3>Lead</h3><p>Production management, team leadership, training, OHS and ISO 9001 quality systems, delivering record output.</p></div>
+      <div class="bring-c reveal"><span class="bi">💡</span><h3>Innovate</h3><p>Digitising engineering knowledge with my own design app, and researching transformers and power systems at master's level.</p></div>
     </div>
     <div class="xf-demo reveal">
       <h3 id="xfTitle">Transformer explorer</h3>

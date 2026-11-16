@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<script>document.documentElement.classList.add('js')</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Md Hasabul Hashib | Electrical Engineer</title>
@@ -143,13 +144,96 @@ footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
 .legend i{display:inline-block;width:14px;height:3px;border-radius:2px;margin-right:5px;vertical-align:middle}
 @media(max-width:720px){.legend{display:none}}
 @media (prefers-reduced-motion: reduce){.hero .fade{animation:none;opacity:1;transform:none}.avatar{animation:none}.cursor{display:none}}
+
+/* logo */
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none!important}
+.logo .xf{width:44px;height:30px;flex:none}
+.logo .xf circle{fill:none;stroke-width:2.4}
+.logo .c1{stroke:var(--accent);animation:coilA 2s ease-in-out infinite}
+.logo .c2{stroke:#3b82f6;animation:coilB 2s ease-in-out infinite}
+@keyframes coilA{0%,100%{stroke-opacity:1}50%{stroke-opacity:.35}}
+@keyframes coilB{0%,100%{stroke-opacity:.35}50%{stroke-opacity:1}}
+.logo .spark{fill:#fbbf24;filter:drop-shadow(0 0 3px #fbbf24)}
+.logo-txt{display:flex;flex-direction:column;line-height:1.1}
+.logo-txt b{font-family:"Space Grotesk",sans-serif;font-size:1.05rem;color:var(--text)}
+.logo-txt b em{font-style:normal;color:var(--accent)}
+.logo-txt small{font-size:.7rem;font-weight:600;color:var(--muted);letter-spacing:.04em;height:1em;transition:opacity .35s,transform .35s}
+.logo-txt small.out{opacity:0;transform:translateY(-4px)}
+/* scroll power bar */
+#powerbar{position:fixed;top:0;left:0;height:3px;width:0;z-index:20;background:linear-gradient(90deg,#ef4444,#fbbf24,#3b82f6);box-shadow:0 0 10px rgba(251,191,36,.8)}
+/* flowing current line on top of each section */
+section{position:relative}
+section:not(.contact)::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent 0,transparent 40%,var(--accent) 50%,transparent 60%,transparent 100%);
+  background-size:300% 100%;animation:current 4s linear infinite;opacity:.7}
+@keyframes current{from{background-position:100% 0}to{background-position:-200% 0}}
+/* section bar charges up */
+.bar{position:relative;overflow:hidden;background:var(--line)}
+.bar::after{content:"";position:absolute;inset:0;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 1s ease .2s}
+.bar.in::after{transform:scaleX(1)}
+/* reveal on scroll */
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.js .reveal.in{opacity:1;transform:none}
+.js .chips .chip{opacity:0;transform:scale(.8);transition:opacity .35s ease,transform .35s ease;transition-delay:calc(var(--i,0)*45ms)}
+.js .in .chips .chip,.js .chips.in .chip{opacity:1;transform:none}
+/* energised timeline */
+.timeline{position:relative}
+.timeline .energy{position:absolute;left:-2px;top:0;width:2px;height:0;background:linear-gradient(#fbbf24,var(--accent));box-shadow:0 0 8px rgba(245,158,11,.8);transition:height .15s linear}
+.job::before{transition:box-shadow .4s,background .4s}
+.job:not(.lit)::before{background:var(--line)}
+.job.lit::before{box-shadow:0 0 0 4px rgba(245,158,11,.2),0 0 14px rgba(245,158,11,.8)}
+/* capacity meters */
+.meter{margin-top:14px}
+.meter .lbl{display:flex;justify-content:space-between;font-size:.74rem;color:var(--muted);margin-bottom:5px;font-weight:600}
+.meter .track{height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.meter .fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#22c55e,#fbbf24,#ef4444);background-size:300px 100%;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.in .meter .fill{width:var(--v)}
+/* transformer demo */
+.xf-demo{margin-top:40px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px}
+.xf-demo h3{font-family:"Space Grotesk",sans-serif;font-size:1.15rem;margin-bottom:4px}
+.xf-demo p{color:var(--muted);font-size:.92rem;margin-bottom:10px}
+.xf-demo svg{width:100%;height:auto;display:block}
+.xf-demo text{font-family:Inter,sans-serif;font-size:13px;fill:var(--muted)}
+.xf-demo .big{font-size:15px;font-weight:700;fill:var(--text)}
+.flux{fill:none;stroke:#fbbf24;stroke-width:3;stroke-dasharray:12 14;animation:flux 1.2s linear infinite;filter:drop-shadow(0 0 4px rgba(251,191,36,.9))}
+@keyframes flux{to{stroke-dashoffset:-26}}
+.wave-in{animation:waveL 1.2s linear infinite}
+.wave-out{animation:waveL 1.2s linear infinite}
+@keyframes waveL{to{transform:translateX(50px)}}
+.turn-p{fill:#ea580c;animation:hot 1.2s ease-in-out infinite}
+.turn-s{fill:#b45309;animation:hot 1.2s ease-in-out infinite .6s}
+@keyframes hot{0%,100%{filter:brightness(1)}50%{filter:brightness(1.5) drop-shadow(0 0 4px #f97316)}}
+/* card hover spark */
+.card{position:relative;overflow:hidden}
+.card::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:3px;background:linear-gradient(90deg,transparent,#fbbf24,transparent)}
+.card:hover::after{animation:sweep .8s ease}
+@keyframes sweep{to{left:120%}}
+/* contact pylons */
+.contact{overflow:hidden}
+.contact .wrap{position:relative;z-index:1}
+.lines{position:absolute;left:0;right:0;bottom:0;width:100%;height:120px;opacity:.35}
+.lines .wire{fill:none;stroke:#94a3b8;stroke-width:1.5}
+.lines .pulse{fill:none;stroke:#fbbf24;stroke-width:2.5;stroke-dasharray:30 600;animation:pulse 3s linear infinite;filter:drop-shadow(0 0 4px #fbbf24)}
+@keyframes pulse{from{stroke-dashoffset:630}to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion: reduce){
+ *,*::before,*::after{animation:none!important;transition:none!important}
+ .js .reveal,.js .chips .chip{opacity:1;transform:none}
+ .meter .fill{width:var(--v)} .bar::after{transform:none}
+}
 </style>
 </head>
 <body>
+<div id="powerbar" aria-hidden="true"></div>
 
 <nav>
   <div class="wrap">
-    <a href="#top" class="logo">Hashib<span>.</span></a>
+    <a href="#top" class="logo" aria-label="Engr. Hashib, home">
+      <svg class="xf" viewBox="0 0 44 30" aria-hidden="true">
+        <circle class="c1" cx="16" cy="15" r="10"/><circle class="c2" cx="28" cy="15" r="10"/>
+        <circle class="spark" r="2.2"><animateMotion dur="2.4s" repeatCount="indefinite" path="M6,15 A10,10 0 1,1 26,15 A10,10 0 1,1 6,15"/></circle>
+      </svg>
+      <span class="logo-txt"><b>Engr. <em>Hashib</em></b><small id="logoTag">11 kV ⇄ 415 V</small></span>
+    </a>
     <ul>
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
@@ -201,7 +285,7 @@ footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
         <p>Since July 2026 I've been working as an electrical engineer at <strong>Ironcore Transformers</strong> in Preston, Victoria, across transformer design, production, testing, QC and repair, while studying a Master of Engineering (Electrical &amp; Electronic) at CQUniversity.</p>
         <p>I'm seeking to grow my career in Australia's power, utilities, manufacturing and infrastructure sectors, with a focus on transformers and power systems.</p>
       </div>
-      <div class="facts">
+      <div class="facts reveal">
         <div><span>Location</span><span>Melbourne, VIC</span></div>
         <div><span>Current role</span><span>Electrical Engineer</span></div>
         <div><span>Employer</span><span>Ironcore Transformers</span></div>
@@ -209,6 +293,26 @@ footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
         <div><span>Specialty</span><span>Transformers &amp; HV testing</span></div>
         <div><span>Membership</span><span>Engineers Australia</span></div>
       </div>
+    </div>
+    <div class="xf-demo reveal">
+      <h3>How a step-down transformer works</h3>
+      <p>Alternating current in the primary winding sets up a changing magnetic flux (Φ) in the steel core, which induces a lower voltage in the secondary winding. The voltage ratio follows the turns ratio: V₁ / V₂ = N₁ / N₂.</p>
+      <svg viewBox="0 0 640 250" role="img" aria-label="Animated diagram of a step-down transformer with magnetic flux circulating in the core">
+        <defs><clipPath id="cin"><rect x="10" y="80" width="165" height="100"/></clipPath><clipPath id="cout"><rect x="465" y="80" width="165" height="100"/></clipPath></defs>
+        <g clip-path="url(#cin)"><path class="wave-in" d="M-40,130.0 L-37,119.0 L-34,109.5 L-31,102.9 L-28,100.1 L-25,101.5 L-22,106.9 L-19,115.5 L-16,126.2 L-13,137.5 L-10,147.6 L-7,155.3 L-4,159.5 L-1,159.5 L2,155.3 L5,147.6 L8,137.5 L11,126.2 L14,115.5 L17,106.9 L20,101.5 L23,100.1 L26,102.9 L29,109.5 L32,119.0 L35,130.0 L38,141.0 L41,150.5 L44,157.1 L47,159.9 L50,158.5 L53,153.1 L56,144.5 L59,133.8 L62,122.5 L65,112.4 L68,104.7 L71,100.5 L74,100.5 L77,104.7 L80,112.4 L83,122.5 L86,133.8 L89,144.5 L92,153.1 L95,158.5 L98,159.9 L101,157.1 L104,150.5 L107,141.0 L110,130.0 L113,119.0 L116,109.5 L119,102.9 L122,100.1 L125,101.5 L128,106.9 L131,115.5 L134,126.2 L137,137.5 L140,147.6 L143,155.3 L146,159.5 L149,159.5 L152,155.3 L155,147.6 L158,137.5 L161,126.2 L164,115.5 L167,106.9 L170,101.5 L173,100.1 L176,102.9 L179,109.5" fill="none" stroke="#ef4444" stroke-width="3"/></g>
+        <g clip-path="url(#cout)"><path class="wave-out" d="M400,130.0 L403,125.2 L406,121.1 L409,118.2 L412,117.0 L415,117.6 L418,120.0 L421,123.7 L424,128.4 L427,133.2 L430,137.6 L433,141.0 L436,142.8 L439,142.8 L442,141.0 L445,137.6 L448,133.2 L451,128.4 L454,123.7 L457,120.0 L460,117.6 L463,117.0 L466,118.2 L469,121.1 L472,125.2 L475,130.0 L478,134.8 L481,138.9 L484,141.8 L487,143.0 L490,142.4 L493,140.0 L496,136.3 L499,131.6 L502,126.8 L505,122.4 L508,119.0 L511,117.2 L514,117.2 L517,119.0 L520,122.4 L523,126.8 L526,131.6 L529,136.3 L532,140.0 L535,142.4 L538,143.0 L541,141.8 L544,138.9 L547,134.8 L550,130.0 L553,125.2 L556,121.1 L559,118.2 L562,117.0 L565,117.6 L568,120.0 L571,123.7 L574,128.4 L577,133.2 L580,137.6 L583,141.0 L586,142.8 L589,142.8 L592,141.0 L595,137.6 L598,133.2 L601,128.4 L604,123.7 L607,120.0 L610,117.6 L613,117.0 L616,118.2 L619,121.1 L622,125.2 L625,130.0 L628,134.8 L631,138.9 L634,141.8 L637,143.0 L640,142.4 L643,140.0 L646,136.3 L649,131.6 L652,126.8 L655,122.4 L658,119.0" fill="none" stroke="#3b82f6" stroke-width="3"/></g>
+        <line x1="175" y1="130" x2="192" y2="130" stroke="#ef4444" stroke-width="2"/>
+        <line x1="448" y1="130" x2="465" y2="130" stroke="#3b82f6" stroke-width="2"/>
+        <rect x="220" y="60" width="200" height="140" fill="none" stroke="#64748b" stroke-width="36" rx="2"/>
+        <rect x="220" y="60" width="200" height="140" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="36" stroke-dasharray="2 6"/>
+        <rect class="flux" x="220" y="60" width="200" height="140" rx="2"/>
+        <rect class="turn-p" x="192" y="86" width="56" height="7" rx="3.5"/><rect class="turn-p" x="192" y="96" width="56" height="7" rx="3.5"/><rect class="turn-p" x="192" y="106" width="56" height="7" rx="3.5"/><rect class="turn-p" x="192" y="116" width="56" height="7" rx="3.5"/><rect class="turn-p" x="192" y="126" width="56" height="7" rx="3.5"/><rect class="turn-p" x="192" y="136" width="56" height="7" rx="3.5"/><rect class="turn-p" x="192" y="146" width="56" height="7" rx="3.5"/><rect class="turn-p" x="192" y="156" width="56" height="7" rx="3.5"/><rect class="turn-p" x="192" y="166" width="56" height="7" rx="3.5"/><rect class="turn-s" x="392" y="92" width="56" height="12" rx="6"/><rect class="turn-s" x="392" y="112" width="56" height="12" rx="6"/><rect class="turn-s" x="392" y="132" width="56" height="12" rx="6"/><rect class="turn-s" x="392" y="152" width="56" height="12" rx="6"/><rect class="turn-s" x="392" y="172" width="56" height="12" rx="6"/>
+        <text x="320" y="35" text-anchor="middle" class="big">Φ  magnetic flux</text>
+        <text x="220" y="235" text-anchor="middle">Primary · N₁ turns</text>
+        <text x="420" y="235" text-anchor="middle">Secondary · N₂ turns</text>
+        <text x="92" y="70" text-anchor="middle" class="big" style="fill:#ef4444">11 kV in</text>
+        <text x="548" y="70" text-anchor="middle" class="big" style="fill:#3b82f6">415 V out</text>
+      </svg>
     </div>
   </div>
 </section>
@@ -218,9 +322,9 @@ footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
     <div class="bar"></div>
     <h2>Experience</h2>
     <p class="sub">10+ years across transformer manufacturing, substations and power equipment.</p>
-    <div class="timeline">
+    <div class="timeline"><div class="energy" aria-hidden="true"></div>
 
-      <div class="job">
+      <div class="job reveal">
         <h3>Electrical Engineer</h3>
         <div class="co">Ironcore Transformers Pty Ltd</div>
         <div class="meta">Preston, Victoria, Australia · Jul 2026 – Present</div>
@@ -232,7 +336,7 @@ footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
         </ul>
       </div>
 
-      <div class="job">
+      <div class="job reveal">
         <h3>Sena Kalyan Electric Industries</h3>
         <div class="co">Transformer Manufacturing &amp; Substation Projects</div>
         <div class="meta">Chattogram, Bangladesh · Dec 2017 – Feb 2026 · 8+ years</div>
@@ -250,7 +354,7 @@ footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
         </ul>
       </div>
 
-      <div class="job">
+      <div class="job reveal">
         <h3>Sales &amp; Marketing Engineer</h3>
         <div class="co">Techsol Engineering Ltd</div>
         <div class="meta">Dhaka, Bangladesh · Jul 2017 – Nov 2017</div>
@@ -260,7 +364,7 @@ footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
         </ul>
       </div>
 
-      <div class="job">
+      <div class="job reveal">
         <h3>Assistant Engineer</h3>
         <div class="co">Digital Energy Limited</div>
         <div class="meta">Dhaka, Bangladesh · Jan 2017 – Jun 2017</div>
@@ -270,7 +374,7 @@ footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
         </ul>
       </div>
 
-      <div class="job">
+      <div class="job reveal">
         <h3>Sales &amp; Service Engineer</h3>
         <div class="co">Biosys Technologies Ltd</div>
         <div class="meta">Dhaka, Bangladesh · Jan 2015 – Nov 2016</div>
@@ -280,7 +384,7 @@ footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
         </ul>
       </div>
 
-      <div class="job">
+      <div class="job reveal">
         <h3>Marketing Executive</h3>
         <div class="co">Energypac Electronics Ltd</div>
         <div class="meta">Dhaka, Bangladesh · Nov 2012 – Apr 2013</div>
@@ -301,53 +405,57 @@ footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
 
     <h3 class="sec-label">Substation projects</h3>
     <div class="cards">
-      <div class="card">
+      <div class="card reveal">
         <div class="kind">Commercial tower</div>
         <h3>Gomti Tower</h3>
         <p>3 × 2000 kVA transformers with full substation, busbar trunking (BBT) and 3 × 650 kVA standby generators.</p>
         <div class="chips"><span class="chip">6,000 kVA</span><span class="chip">Substation</span><span class="chip">BBT</span><span class="chip">Generators</span></div>
+        <div class="meter"><div class="lbl"><span>Installed capacity</span><span>6,000 kVA</span></div><div class="track"><div class="fill" style="--v:100%"></div></div></div>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <div class="kind">Commercial tower</div>
         <h3>CSD Tower</h3>
         <p>4000 kVA dry-type transformer and substation with busbar trunking.</p>
         <div class="chips"><span class="chip">4,000 kVA</span><span class="chip">Dry-type</span><span class="chip">BBT</span></div>
+        <div class="meter"><div class="lbl"><span>Installed capacity</span><span>4,000 kVA</span></div><div class="track"><div class="fill" style="--v:67%"></div></div></div>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <div class="kind">Industrial</div>
         <h3>Sena Flour Mills</h3>
         <p>3000 kVA transformer and substation for an industrial flour milling facility.</p>
         <div class="chips"><span class="chip">3,000 kVA</span><span class="chip">Industrial</span><span class="chip">Substation</span></div>
+        <div class="meter"><div class="lbl"><span>Installed capacity</span><span>3,000 kVA</span></div><div class="track"><div class="fill" style="--v:50%"></div></div></div>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <div class="kind">Public infrastructure</div>
         <h3>Chattogram Cantonment Board</h3>
         <p>1000 kVA transformer and substation installation and commissioning.</p>
         <div class="chips"><span class="chip">1,000 kVA</span><span class="chip">Commissioning</span></div>
+        <div class="meter"><div class="lbl"><span>Installed capacity</span><span>1,000 kVA</span></div><div class="track"><div class="fill" style="--v:17%"></div></div></div>
       </div>
     </div>
 
     <h3 class="sec-label">Industry &amp; academic work</h3>
     <div class="cards">
-      <div class="card">
+      <div class="card reveal">
         <div class="kind">Industry · Ironcore</div>
         <h3>Transformer Design Database</h3>
         <p>Digitising a large archive of hand-written transformer design records into a searchable design data sheet with integrated costing, focused on the most common designs.</p>
         <div class="chips"><span class="chip">Transformer design</span><span class="chip">Excel</span><span class="chip">Costing</span></div>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <div class="kind">Academic · Power Systems</div>
         <h3>320 MW Solar + 470 MW Pumped Hydro Grid Connection</h3>
         <p>Modelled a PV farm and pumped hydro plant in North Queensland connected via a 420 km, 275 kV line to a four-state Australian grid model. Load flow, exciter and PSS tuning, critical clearing time and ROCOF analysis against NER requirements.</p>
         <div class="chips"><span class="chip">PSS®E</span><span class="chip">Load flow</span><span class="chip">Stability</span><span class="chip">NER</span></div>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <div class="kind">Academic · Communications</div>
         <h3>Long-Haul 10 Gb/s Fibre Link</h3>
         <p>Designed and simulated a long-haul single-mode fibre link in VPI Photonics, evaluating BER and Q-factor performance.</p>
         <div class="chips"><span class="chip">VPI Photonics</span><span class="chip">Optical fibre</span><span class="chip">BER analysis</span></div>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <div class="kind">Research · 2027</div>
         <h3>Master's Research Project</h3>
         <p>Upcoming research in transformers and power systems at CQUniversity, running across Term 1 and Term 2 of 2027.</p>
@@ -370,26 +478,26 @@ footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
       <button data-f="team">Team &amp; Community</button>
     </div>
     <div class="gallery">
-      <figure data-cat="factory"><img src="images/coil-production.jpg" alt="Supervising transformer coil insulation preparation on the production floor" loading="lazy"><figcaption>Supervising transformer coil insulation preparation on the production floor</figcaption></figure>
-      <figure data-cat="factory"><img src="images/transformer-inspection.jpg" alt="Pre-delivery inspection of 15 kVA single-phase distribution transformers with the client" loading="lazy"><figcaption>Pre-delivery inspection of 15 kVA single-phase distribution transformers with the client</figcaption></figure>
-      <figure data-cat="factory"><img src="images/factory-inspection-ppe.jpg" alt="Accompanying senior officials on a factory inspection" loading="lazy"><figcaption>Accompanying senior officials on a factory inspection</figcaption></figure>
-      <figure data-cat="factory"><img src="images/factory-tour.jpg" alt="Leading a tour of the transformer manufacturing facility for visiting officials" loading="lazy"><figcaption>Leading a tour of the transformer manufacturing facility for visiting officials</figcaption></figure>
-      <figure data-cat="factory"><img src="images/factory-inspection.jpg" alt="Factory inspection visit with senior management and officials" loading="lazy"><figcaption>Factory inspection visit with senior management and officials</figcaption></figure>
-      <figure data-cat="factory"><img src="images/transformer-repair-check.jpg" alt="Inspecting used distribution transformers received for repair and refurbishment" loading="lazy"><figcaption>Inspecting used distribution transformers received for repair and refurbishment</figcaption></figure>
-      <figure data-cat="factory"><img src="images/site-autocad.jpg" alt="Reviewing electrical layout drawings in AutoCAD at a substation project site" loading="lazy"><figcaption>Reviewing electrical layout drawings in AutoCAD at a substation project site</figcaption></figure>
-      <figure data-cat="factory"><img src="images/site-visit-team.jpg" alt="Project site visit with the engineering and client team" loading="lazy"><figcaption>Project site visit with the engineering and client team</figcaption></figure>
-      <figure data-cat="visits"><img src="images/machinery-evaluation.jpg" alt="Evaluating transformer manufacturing machinery at an overseas supplier" loading="lazy"><figcaption>Evaluating transformer manufacturing machinery at an overseas supplier</figcaption></figure>
-      <figure data-cat="visits"><img src="images/slitting-plant.jpg" alt="On the floor of a steel coil slitting plant during an overseas supplier visit" loading="lazy"><figcaption>On the floor of a steel coil slitting plant during an overseas supplier visit</figcaption></figure>
-      <figure data-cat="visits"><img src="images/supplier-visit-gift.jpg" alt="Supplier visit to a steel coil plant, exchanging gifts with the hosts" loading="lazy"><figcaption>Supplier visit to a steel coil plant, exchanging gifts with the hosts</figcaption></figure>
-      <figure data-cat="visits"><img src="images/supplier-hosts.jpg" alt="With supplier hosts during an overseas factory visit" loading="lazy"><figcaption>With supplier hosts during an overseas factory visit</figcaption></figure>
-      <figure data-cat="recognition"><img src="images/recognition-plaque.jpg" alt="Receiving a recognition plaque as Deputy Manager (Engineering)" loading="lazy"><figcaption>Receiving a recognition plaque as Deputy Manager (Engineering)</figcaption></figure>
-      <figure data-cat="recognition"><img src="images/certificate.jpg" alt="Receiving a professional training certificate" loading="lazy"><figcaption>Receiving a professional training certificate</figcaption></figure>
-      <figure data-cat="recognition"><img src="images/crest-presentation.jpg" alt="Presenting an honorary crest to a visiting chief guest" loading="lazy"><figcaption>Presenting an honorary crest to a visiting chief guest</figcaption></figure>
-      <figure data-cat="recognition"><img src="images/award-ceremony.jpg" alt="Award and farewell ceremony at the factory" loading="lazy"><figcaption>Award and farewell ceremony at the factory</figcaption></figure>
-      <figure data-cat="recognition"><img src="images/welcome-ceremony.jpg" alt="Welcome ceremony with crest presentation at the factory" loading="lazy"><figcaption>Welcome ceremony with crest presentation at the factory</figcaption></figure>
-      <figure data-cat="team"><img src="images/team-management.jpg" alt="With the engineering and management team" loading="lazy"><figcaption>With the engineering and management team</figcaption></figure>
-      <figure data-cat="team"><img src="images/team-gathering.jpg" alt="With colleagues at a team gathering" loading="lazy"><figcaption>With colleagues at a team gathering</figcaption></figure>
-      <figure data-cat="team"><img src="images/covid-relief.jpg" alt="COVID-19 relief distribution organised by Sena Kalyan Electric Industries" loading="lazy"><figcaption>COVID-19 relief distribution organised by Sena Kalyan Electric Industries</figcaption></figure>
+      <figure class="reveal" data-cat="factory"><img src="images/coil-production.jpg" alt="Supervising transformer coil insulation preparation on the production floor" loading="lazy"><figcaption>Supervising transformer coil insulation preparation on the production floor</figcaption></figure>
+      <figure class="reveal" data-cat="factory"><img src="images/transformer-inspection.jpg" alt="Pre-delivery inspection of 15 kVA single-phase distribution transformers with the client" loading="lazy"><figcaption>Pre-delivery inspection of 15 kVA single-phase distribution transformers with the client</figcaption></figure>
+      <figure class="reveal" data-cat="factory"><img src="images/factory-inspection-ppe.jpg" alt="Accompanying senior officials on a factory inspection" loading="lazy"><figcaption>Accompanying senior officials on a factory inspection</figcaption></figure>
+      <figure class="reveal" data-cat="factory"><img src="images/factory-tour.jpg" alt="Leading a tour of the transformer manufacturing facility for visiting officials" loading="lazy"><figcaption>Leading a tour of the transformer manufacturing facility for visiting officials</figcaption></figure>
+      <figure class="reveal" data-cat="factory"><img src="images/factory-inspection.jpg" alt="Factory inspection visit with senior management and officials" loading="lazy"><figcaption>Factory inspection visit with senior management and officials</figcaption></figure>
+      <figure class="reveal" data-cat="factory"><img src="images/transformer-repair-check.jpg" alt="Inspecting used distribution transformers received for repair and refurbishment" loading="lazy"><figcaption>Inspecting used distribution transformers received for repair and refurbishment</figcaption></figure>
+      <figure class="reveal" data-cat="factory"><img src="images/site-autocad.jpg" alt="Reviewing electrical layout drawings in AutoCAD at a substation project site" loading="lazy"><figcaption>Reviewing electrical layout drawings in AutoCAD at a substation project site</figcaption></figure>
+      <figure class="reveal" data-cat="factory"><img src="images/site-visit-team.jpg" alt="Project site visit with the engineering and client team" loading="lazy"><figcaption>Project site visit with the engineering and client team</figcaption></figure>
+      <figure class="reveal" data-cat="visits"><img src="images/machinery-evaluation.jpg" alt="Evaluating transformer manufacturing machinery at an overseas supplier" loading="lazy"><figcaption>Evaluating transformer manufacturing machinery at an overseas supplier</figcaption></figure>
+      <figure class="reveal" data-cat="visits"><img src="images/slitting-plant.jpg" alt="On the floor of a steel coil slitting plant during an overseas supplier visit" loading="lazy"><figcaption>On the floor of a steel coil slitting plant during an overseas supplier visit</figcaption></figure>
+      <figure class="reveal" data-cat="visits"><img src="images/supplier-visit-gift.jpg" alt="Supplier visit to a steel coil plant, exchanging gifts with the hosts" loading="lazy"><figcaption>Supplier visit to a steel coil plant, exchanging gifts with the hosts</figcaption></figure>
+      <figure class="reveal" data-cat="visits"><img src="images/supplier-hosts.jpg" alt="With supplier hosts during an overseas factory visit" loading="lazy"><figcaption>With supplier hosts during an overseas factory visit</figcaption></figure>
+      <figure class="reveal" data-cat="recognition"><img src="images/recognition-plaque.jpg" alt="Receiving a recognition plaque as Deputy Manager (Engineering)" loading="lazy"><figcaption>Receiving a recognition plaque as Deputy Manager (Engineering)</figcaption></figure>
+      <figure class="reveal" data-cat="recognition"><img src="images/certificate.jpg" alt="Receiving a professional training certificate" loading="lazy"><figcaption>Receiving a professional training certificate</figcaption></figure>
+      <figure class="reveal" data-cat="recognition"><img src="images/crest-presentation.jpg" alt="Presenting an honorary crest to a visiting chief guest" loading="lazy"><figcaption>Presenting an honorary crest to a visiting chief guest</figcaption></figure>
+      <figure class="reveal" data-cat="recognition"><img src="images/award-ceremony.jpg" alt="Award and farewell ceremony at the factory" loading="lazy"><figcaption>Award and farewell ceremony at the factory</figcaption></figure>
+      <figure class="reveal" data-cat="recognition"><img src="images/welcome-ceremony.jpg" alt="Welcome ceremony with crest presentation at the factory" loading="lazy"><figcaption>Welcome ceremony with crest presentation at the factory</figcaption></figure>
+      <figure class="reveal" data-cat="team"><img src="images/team-management.jpg" alt="With the engineering and management team" loading="lazy"><figcaption>With the engineering and management team</figcaption></figure>
+      <figure class="reveal" data-cat="team"><img src="images/team-gathering.jpg" alt="With colleagues at a team gathering" loading="lazy"><figcaption>With colleagues at a team gathering</figcaption></figure>
+      <figure class="reveal" data-cat="team"><img src="images/covid-relief.jpg" alt="COVID-19 relief distribution organised by Sena Kalyan Electric Industries" loading="lazy"><figcaption>COVID-19 relief distribution organised by Sena Kalyan Electric Industries</figcaption></figure>
     </div>
   </div>
 </section>
@@ -400,27 +508,27 @@ footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
     <h2>Skills</h2>
     <p class="sub">Technical expertise, test equipment and tools.</p>
     <div class="skills">
-      <div class="skill-box">
+      <div class="skill-box reveal">
         <h3>Transformer Engineering</h3>
         <div class="chips"><span class="chip">Distribution transformer design</span><span class="chip">Single &amp; three-phase</span><span class="chip">Coil winding</span><span class="chip">Assembly &amp; QC</span><span class="chip">Repair</span><span class="chip">Core &amp; copper loss</span><span class="chip">% Impedance</span></div>
       </div>
-      <div class="skill-box">
+      <div class="skill-box reveal">
         <h3>Testing &amp; Commissioning</h3>
         <div class="chips"><span class="chip">HV &amp; Lightning Impulse</span><span class="chip">Partial Discharge</span><span class="chip">TTR</span><span class="chip">SFRA</span><span class="chip">DGA</span><span class="chip">Tan Delta</span><span class="chip">IR</span><span class="chip">DVDF</span><span class="chip">Oil testing &amp; filtration</span></div>
       </div>
-      <div class="skill-box">
+      <div class="skill-box reveal">
         <h3>Substation &amp; Power Systems</h3>
         <div class="chips"><span class="chip">HT/LT line installation</span><span class="chip">Switchgear</span><span class="chip">Metering</span><span class="chip">PFI plants</span><span class="chip">SLD design</span><span class="chip">BOQ estimation</span><span class="chip">Power system analysis</span></div>
       </div>
-      <div class="skill-box">
+      <div class="skill-box reveal">
         <h3>Software &amp; Tools</h3>
         <div class="chips"><span class="chip">PSS®E</span><span class="chip">AutoCAD</span><span class="chip">MATLAB</span><span class="chip">VPI Photonics</span><span class="chip">FreeCAD</span><span class="chip">Python</span><span class="chip">C/C++</span><span class="chip">PLC</span><span class="chip">Excel</span><span class="chip">MS Project</span></div>
       </div>
-      <div class="skill-box">
+      <div class="skill-box reveal">
         <h3>Operations &amp; Leadership</h3>
         <div class="chips"><span class="chip">Production management</span><span class="chip">Process optimisation</span><span class="chip">Maintenance planning</span><span class="chip">Fault diagnosis</span><span class="chip">Team leadership</span><span class="chip">Training</span><span class="chip">OHS &amp; QMS</span></div>
       </div>
-      <div class="skill-box">
+      <div class="skill-box reveal">
         <h3>Manufacturing Equipment</h3>
         <div class="chips"><span class="chip">Winding machines</span><span class="chip">Core cutting</span><span class="chip">Slitting lines</span><span class="chip">Oil filtration plants</span></div>
       </div>
@@ -434,15 +542,15 @@ footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
     <h2>Education</h2>
     <p class="sub">Academic qualifications.</p>
     <div class="edu-list">
-      <div class="edu">
+      <div class="edu reveal">
         <div><h3>Master of Engineering, Electrical &amp; Electronic Engineering</h3><div class="school">Central Queensland University (CQUniversity), Melbourne</div></div>
         <div class="yr">2026 – 2027</div>
       </div>
-      <div class="edu">
+      <div class="edu reveal">
         <div><h3>B.Sc. in Electrical &amp; Electronic Engineering</h3><div class="school">Bangladesh University of Business and Technology</div></div>
         <div class="yr">2012 – 2016</div>
       </div>
-      <div class="edu">
+      <div class="edu reveal">
         <div><h3>Diploma in Engineering, Electronics</h3><div class="school">Rajshahi Polytechnic Institute</div></div>
         <div class="yr">2007 – 2011</div>
       </div>
@@ -450,17 +558,28 @@ footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
 
     <h3 class="sec-label" style="margin-top:46px">Certifications &amp; licences</h3>
     <div class="certs">
-      <div class="cert"><b>Electrical Supervisor Licence (A, B, C)</b><span>Bangladesh</span></div>
-      <div class="cert"><b>Transformer Design &amp; Production</b><span>Magnitude Transformer Ltd, India</span></div>
-      <div class="cert"><b>ISO 9001 Quality Management System</b><span>QMS training</span></div>
-      <div class="cert"><b>Public Procurement Training</b><span>Bangladesh Institute of Management</span></div>
-      <div class="cert"><b>Construction White Card</b><span>Victoria, Australia</span></div>
-      <div class="cert"><b>Certificate II in Security Operations &amp; First Aid</b><span>Victoria, Australia</span></div>
+      <div class="cert reveal"><b>Electrical Supervisor Licence (A, B, C)</b><span>Bangladesh</span></div>
+      <div class="cert reveal"><b>Transformer Design &amp; Production</b><span>Magnitude Transformer Ltd, India</span></div>
+      <div class="cert reveal"><b>ISO 9001 Quality Management System</b><span>QMS training</span></div>
+      <div class="cert reveal"><b>Public Procurement Training</b><span>Bangladesh Institute of Management</span></div>
+      <div class="cert reveal"><b>Construction White Card</b><span>Victoria, Australia</span></div>
+      <div class="cert reveal"><b>Certificate II in Security Operations &amp; First Aid</b><span>Victoria, Australia</span></div>
     </div>
   </div>
 </section>
 
 <section id="contact" class="contact">
+  <svg class="lines" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
+    <path class="wire" d="M0,40 Q150,80 300,40 T600,40 T900,40 T1200,40"/>
+    <path class="wire" d="M0,60 Q150,100 300,60 T600,60 T900,60 T1200,60"/>
+    <path class="pulse" d="M0,40 Q150,80 300,40 T600,40 T900,40 T1200,40"/>
+    <path class="pulse" style="animation-delay:1.5s" d="M0,60 Q150,100 300,60 T600,60 T900,60 T1200,60"/>
+    <g stroke="#94a3b8" stroke-width="2" fill="none">
+      <path d="M300,120 L300,30 M285,40 L315,40 M288,60 L312,60 M290,120 L300,30 L310,120"/>
+      <path d="M600,120 L600,30 M585,40 L615,40 M588,60 L612,60 M590,120 L600,30 L610,120"/>
+      <path d="M900,120 L900,30 M885,40 L915,40 M888,60 L912,60 M890,120 L900,30 L910,120"/>
+    </g>
+  </svg>
   <div class="wrap">
     <h2>Let's connect</h2>
     <p class="sub">Open to opportunities in Australia's power, utilities, manufacturing and infrastructure sectors.</p>
@@ -519,6 +638,29 @@ if(!reduce){let r=0,i=roles[0].length,del=true;
 document.querySelectorAll('[data-count]').forEach(b=>{if(reduce)return;const n=+b.dataset.count,suf=b.dataset.suffix||'',st=performance.now()+1100;
   (function step(now){const p=Math.min(1,Math.max(0,(now-st)/1600)),v=Math.round(n*(1-Math.pow(1-p,3)));
     b.textContent=v.toLocaleString('en-AU')+suf;if(p<1)requestAnimationFrame(step)})(performance.now())});
+})();
+</script>
+<script>
+(function(){
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+// rotating logo tagline
+const tags=['11 kV ⇄ 415 V','Transformers · Power','Design · Test · Deliver','Substations · HV','Energising ideas'],lt=document.getElementById('logoTag');
+if(!reduce){let k=0;setInterval(()=>{lt.classList.add('out');setTimeout(()=>{k=(k+1)%tags.length;lt.textContent=tags[k];lt.classList.remove('out')},350)},2800)}
+// chip stagger index
+document.querySelectorAll('.chips').forEach(c=>[...c.children].forEach((ch,i)=>ch.style.setProperty('--i',i)));
+// stagger siblings
+document.querySelectorAll('.reveal').forEach(el=>{const sib=[...el.parentElement.children].filter(x=>x.classList.contains('reveal'));const i=sib.indexOf(el);el.style.transitionDelay=Math.min(i,8)*70+'ms'});
+// reveal observer
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal,.bar,.chips').forEach(el=>io.observe(el));
+// scroll: power bar + timeline energy
+const pb=document.getElementById('powerbar'),tl=document.querySelector('.timeline'),en=tl&&tl.querySelector('.energy'),jobs=[...document.querySelectorAll('.job')];
+function onScroll(){
+  const d=document.documentElement,max=d.scrollHeight-innerHeight;pb.style.width=(max>0?scrollY/max*100:0)+'%';
+  if(tl){const r=tl.getBoundingClientRect(),line=innerHeight*0.6,h=Math.max(0,Math.min(r.height,line-r.top));en.style.height=h+'px';
+    jobs.forEach(j=>j.classList.toggle('lit',j.getBoundingClientRect().top+10<line))}
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
 })();
 </script>
 </body>

@@ -125,6 +125,10 @@ footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
 .gallery img{width:100%;height:240px;object-fit:cover;display:block;transition:transform .3s}
 .gallery figure:hover img{transform:scale(1.04)}
 .gallery figcaption{padding:12px 14px;font-size:.88rem;color:var(--muted)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.filters button{font:inherit;font-size:.86rem;font-weight:600;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--muted);cursor:pointer}
+.filters button.on,.filters button:hover{background:var(--accent);border-color:var(--accent);color:#111}
+.gallery figure.hide{display:none}
 .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:50;padding:20px;cursor:zoom-out}
 .lightbox.open{display:flex}
 .lightbox img{max-width:100%;max-height:90vh;border-radius:8px}
@@ -344,14 +348,35 @@ footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
   <div class="wrap">
     <div class="bar"></div>
     <h2>Work in action</h2>
-    <p class="sub">On the factory floor, on site and in training. Click a photo to enlarge.</p>
+    <p class="sub">On the factory floor, on site, at supplier facilities and with the team. Click a photo to enlarge.</p>
+    <div class="filters">
+      <button class="on" data-f="all">All</button>
+      <button data-f="factory">Factory &amp; Projects</button>
+      <button data-f="visits">Supplier Visits</button>
+      <button data-f="recognition">Recognition</button>
+      <button data-f="team">Team &amp; Community</button>
+    </div>
     <div class="gallery">
-      <figure><img src="images/coil-production.jpg" alt="Transformer coil insulation production" loading="lazy"><figcaption>Supervising transformer coil insulation preparation on the production floor</figcaption></figure>
-      <figure><img src="images/site-autocad.jpg" alt="Reviewing AutoCAD drawings on site" loading="lazy"><figcaption>Reviewing electrical layout drawings in AutoCAD at a substation project site</figcaption></figure>
-      <figure><img src="images/factory-tour.jpg" alt="Leading a factory tour" loading="lazy"><figcaption>Leading a tour of the transformer manufacturing facility for visiting officials</figcaption></figure>
-      <figure><img src="images/factory-inspection.jpg" alt="Factory inspection visit" loading="lazy"><figcaption>Factory inspection visit with senior management and officials</figcaption></figure>
-      <figure><img src="images/site-visit-team.jpg" alt="Project site visit with team" loading="lazy"><figcaption>Project site visit with the engineering and client team</figcaption></figure>
-      <figure><img src="images/certificate.jpg" alt="Receiving training certificate" loading="lazy"><figcaption>Receiving a professional training certificate</figcaption></figure>
+      <figure data-cat="factory"><img src="images/coil-production.jpg" alt="Supervising transformer coil insulation preparation on the production floor" loading="lazy"><figcaption>Supervising transformer coil insulation preparation on the production floor</figcaption></figure>
+      <figure data-cat="factory"><img src="images/transformer-inspection.jpg" alt="Pre-delivery inspection of 15 kVA single-phase distribution transformers with the client" loading="lazy"><figcaption>Pre-delivery inspection of 15 kVA single-phase distribution transformers with the client</figcaption></figure>
+      <figure data-cat="factory"><img src="images/factory-inspection-ppe.jpg" alt="Accompanying senior officials on a factory inspection" loading="lazy"><figcaption>Accompanying senior officials on a factory inspection</figcaption></figure>
+      <figure data-cat="factory"><img src="images/factory-tour.jpg" alt="Leading a tour of the transformer manufacturing facility for visiting officials" loading="lazy"><figcaption>Leading a tour of the transformer manufacturing facility for visiting officials</figcaption></figure>
+      <figure data-cat="factory"><img src="images/factory-inspection.jpg" alt="Factory inspection visit with senior management and officials" loading="lazy"><figcaption>Factory inspection visit with senior management and officials</figcaption></figure>
+      <figure data-cat="factory"><img src="images/transformer-repair-check.jpg" alt="Inspecting used distribution transformers received for repair and refurbishment" loading="lazy"><figcaption>Inspecting used distribution transformers received for repair and refurbishment</figcaption></figure>
+      <figure data-cat="factory"><img src="images/site-autocad.jpg" alt="Reviewing electrical layout drawings in AutoCAD at a substation project site" loading="lazy"><figcaption>Reviewing electrical layout drawings in AutoCAD at a substation project site</figcaption></figure>
+      <figure data-cat="factory"><img src="images/site-visit-team.jpg" alt="Project site visit with the engineering and client team" loading="lazy"><figcaption>Project site visit with the engineering and client team</figcaption></figure>
+      <figure data-cat="visits"><img src="images/machinery-evaluation.jpg" alt="Evaluating transformer manufacturing machinery at an overseas supplier" loading="lazy"><figcaption>Evaluating transformer manufacturing machinery at an overseas supplier</figcaption></figure>
+      <figure data-cat="visits"><img src="images/slitting-plant.jpg" alt="On the floor of a steel coil slitting plant during an overseas supplier visit" loading="lazy"><figcaption>On the floor of a steel coil slitting plant during an overseas supplier visit</figcaption></figure>
+      <figure data-cat="visits"><img src="images/supplier-visit-gift.jpg" alt="Supplier visit to a steel coil plant, exchanging gifts with the hosts" loading="lazy"><figcaption>Supplier visit to a steel coil plant, exchanging gifts with the hosts</figcaption></figure>
+      <figure data-cat="visits"><img src="images/supplier-hosts.jpg" alt="With supplier hosts during an overseas factory visit" loading="lazy"><figcaption>With supplier hosts during an overseas factory visit</figcaption></figure>
+      <figure data-cat="recognition"><img src="images/recognition-plaque.jpg" alt="Receiving a recognition plaque as Deputy Manager (Engineering)" loading="lazy"><figcaption>Receiving a recognition plaque as Deputy Manager (Engineering)</figcaption></figure>
+      <figure data-cat="recognition"><img src="images/certificate.jpg" alt="Receiving a professional training certificate" loading="lazy"><figcaption>Receiving a professional training certificate</figcaption></figure>
+      <figure data-cat="recognition"><img src="images/crest-presentation.jpg" alt="Presenting an honorary crest to a visiting chief guest" loading="lazy"><figcaption>Presenting an honorary crest to a visiting chief guest</figcaption></figure>
+      <figure data-cat="recognition"><img src="images/award-ceremony.jpg" alt="Award and farewell ceremony at the factory" loading="lazy"><figcaption>Award and farewell ceremony at the factory</figcaption></figure>
+      <figure data-cat="recognition"><img src="images/welcome-ceremony.jpg" alt="Welcome ceremony with crest presentation at the factory" loading="lazy"><figcaption>Welcome ceremony with crest presentation at the factory</figcaption></figure>
+      <figure data-cat="team"><img src="images/team-management.jpg" alt="With the engineering and management team" loading="lazy"><figcaption>With the engineering and management team</figcaption></figure>
+      <figure data-cat="team"><img src="images/team-gathering.jpg" alt="With colleagues at a team gathering" loading="lazy"><figcaption>With colleagues at a team gathering</figcaption></figure>
+      <figure data-cat="team"><img src="images/covid-relief.jpg" alt="COVID-19 relief distribution organised by Sena Kalyan Electric Industries" loading="lazy"><figcaption>COVID-19 relief distribution organised by Sena Kalyan Electric Industries</figcaption></figure>
     </div>
   </div>
 </section>
@@ -440,6 +465,10 @@ footer{text-align:center;padding:24px;color:var(--muted);font-size:.85rem}
 const lb=document.getElementById('lb'),li=lb.querySelector('img');
 document.querySelectorAll('.gallery img').forEach(i=>i.addEventListener('click',()=>{li.src=i.src;li.alt=i.alt;lb.classList.add('open')}));
 lb.addEventListener('click',()=>lb.classList.remove('open'));
+document.querySelectorAll('.filters button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.filters button').forEach(x=>x.classList.toggle('on',x===b));
+  document.querySelectorAll('.gallery figure').forEach(f=>f.classList.toggle('hide',b.dataset.f!=='all'&&f.dataset.cat!==b.dataset.f));
+}));
 document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('open')});
 </script>
 </body>

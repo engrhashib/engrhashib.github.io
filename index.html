@@ -220,6 +220,18 @@ section:not(.contact)::before{content:"";position:absolute;top:0;left:0;right:0;
  .js .reveal,.js .chips .chip{opacity:1;transform:none}
  .meter .fill{width:var(--v)} .bar::after{transform:none}
 }
+.xf-ctrl{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0 10px}
+@media(max-width:760px){.xf-ctrl{grid-template-columns:1fr}}
+.xf-lab{display:block;font-size:.76rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{font:inherit;font-size:.84rem;font-weight:600;padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--text);cursor:pointer;transition:all .2s}
+.seg button:hover{border-color:var(--accent)}
+#vin button.on{background:#ef4444;border-color:#ef4444;color:#fff}
+#vout button.on{background:#3b82f6;border-color:#3b82f6;color:#fff}
+.xf-read{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;font-size:.9rem;color:var(--muted);margin-bottom:6px}
+.xf-read b{color:var(--text)}
+.pill{background:var(--accent-soft);color:var(--text);font-weight:700;padding:3px 12px;border-radius:999px;font-size:.8rem}
+#gP rect,#gS rect{transition:all .4s ease}
 </style>
 </head>
 <body>
@@ -295,23 +307,28 @@ section:not(.contact)::before{content:"";position:absolute;top:0;left:0;right:0;
       </div>
     </div>
     <div class="xf-demo reveal">
-      <h3>How a step-down transformer works</h3>
-      <p>Alternating current in the primary winding sets up a changing magnetic flux (Φ) in the steel core, which induces a lower voltage in the secondary winding. The voltage ratio follows the turns ratio: V₁ / V₂ = N₁ / N₂.</p>
-      <svg viewBox="0 0 640 250" role="img" aria-label="Animated diagram of a step-down transformer with magnetic flux circulating in the core">
+      <h3 id="xfTitle">How a step-down transformer works</h3>
+      <p>Alternating current in the primary winding sets up a changing magnetic flux (Φ) in the steel core, which induces a voltage in the secondary winding. The voltage ratio follows the turns ratio: V₁ / V₂ = N₁ / N₂. Pick a voltage pair to see it change.</p>
+      <div class="xf-ctrl">
+        <div><span class="xf-lab" style="color:#ef4444">Input (primary)</span><div class="seg" id="vin"></div></div>
+        <div><span class="xf-lab" style="color:#3b82f6">Output (secondary)</span><div class="seg" id="vout"></div></div>
+      </div>
+      <div class="xf-read"><span id="xfType" class="pill">Step-down</span><span>Turns ratio <b id="xfRatio">26.5 : 1</b></span><span>Voltage change <b id="xfPct">−96.2 %</b></span></div>
+      <svg viewBox="0 0 640 250" role="img" aria-label="Animated diagram of a transformer with magnetic flux circulating in the core">
         <defs><clipPath id="cin"><rect x="10" y="80" width="165" height="100"/></clipPath><clipPath id="cout"><rect x="465" y="80" width="165" height="100"/></clipPath></defs>
-        <g clip-path="url(#cin)"><path class="wave-in" d="M-40,130.0 L-37,119.0 L-34,109.5 L-31,102.9 L-28,100.1 L-25,101.5 L-22,106.9 L-19,115.5 L-16,126.2 L-13,137.5 L-10,147.6 L-7,155.3 L-4,159.5 L-1,159.5 L2,155.3 L5,147.6 L8,137.5 L11,126.2 L14,115.5 L17,106.9 L20,101.5 L23,100.1 L26,102.9 L29,109.5 L32,119.0 L35,130.0 L38,141.0 L41,150.5 L44,157.1 L47,159.9 L50,158.5 L53,153.1 L56,144.5 L59,133.8 L62,122.5 L65,112.4 L68,104.7 L71,100.5 L74,100.5 L77,104.7 L80,112.4 L83,122.5 L86,133.8 L89,144.5 L92,153.1 L95,158.5 L98,159.9 L101,157.1 L104,150.5 L107,141.0 L110,130.0 L113,119.0 L116,109.5 L119,102.9 L122,100.1 L125,101.5 L128,106.9 L131,115.5 L134,126.2 L137,137.5 L140,147.6 L143,155.3 L146,159.5 L149,159.5 L152,155.3 L155,147.6 L158,137.5 L161,126.2 L164,115.5 L167,106.9 L170,101.5 L173,100.1 L176,102.9 L179,109.5" fill="none" stroke="#ef4444" stroke-width="3"/></g>
-        <g clip-path="url(#cout)"><path class="wave-out" d="M400,130.0 L403,125.2 L406,121.1 L409,118.2 L412,117.0 L415,117.6 L418,120.0 L421,123.7 L424,128.4 L427,133.2 L430,137.6 L433,141.0 L436,142.8 L439,142.8 L442,141.0 L445,137.6 L448,133.2 L451,128.4 L454,123.7 L457,120.0 L460,117.6 L463,117.0 L466,118.2 L469,121.1 L472,125.2 L475,130.0 L478,134.8 L481,138.9 L484,141.8 L487,143.0 L490,142.4 L493,140.0 L496,136.3 L499,131.6 L502,126.8 L505,122.4 L508,119.0 L511,117.2 L514,117.2 L517,119.0 L520,122.4 L523,126.8 L526,131.6 L529,136.3 L532,140.0 L535,142.4 L538,143.0 L541,141.8 L544,138.9 L547,134.8 L550,130.0 L553,125.2 L556,121.1 L559,118.2 L562,117.0 L565,117.6 L568,120.0 L571,123.7 L574,128.4 L577,133.2 L580,137.6 L583,141.0 L586,142.8 L589,142.8 L592,141.0 L595,137.6 L598,133.2 L601,128.4 L604,123.7 L607,120.0 L610,117.6 L613,117.0 L616,118.2 L619,121.1 L622,125.2 L625,130.0 L628,134.8 L631,138.9 L634,141.8 L637,143.0 L640,142.4 L643,140.0 L646,136.3 L649,131.6 L652,126.8 L655,122.4 L658,119.0" fill="none" stroke="#3b82f6" stroke-width="3"/></g>
+        <g clip-path="url(#cin)"><path id="wIn" class="wave-in" fill="none" stroke="#ef4444" stroke-width="3"/></g>
+        <g clip-path="url(#cout)"><path id="wOut" class="wave-out" fill="none" stroke="#3b82f6" stroke-width="3"/></g>
         <line x1="175" y1="130" x2="192" y2="130" stroke="#ef4444" stroke-width="2"/>
         <line x1="448" y1="130" x2="465" y2="130" stroke="#3b82f6" stroke-width="2"/>
         <rect x="220" y="60" width="200" height="140" fill="none" stroke="#64748b" stroke-width="36" rx="2"/>
         <rect x="220" y="60" width="200" height="140" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="36" stroke-dasharray="2 6"/>
         <rect class="flux" x="220" y="60" width="200" height="140" rx="2"/>
-        <rect class="turn-p" x="192" y="86" width="56" height="7" rx="3.5"/><rect class="turn-p" x="192" y="96" width="56" height="7" rx="3.5"/><rect class="turn-p" x="192" y="106" width="56" height="7" rx="3.5"/><rect class="turn-p" x="192" y="116" width="56" height="7" rx="3.5"/><rect class="turn-p" x="192" y="126" width="56" height="7" rx="3.5"/><rect class="turn-p" x="192" y="136" width="56" height="7" rx="3.5"/><rect class="turn-p" x="192" y="146" width="56" height="7" rx="3.5"/><rect class="turn-p" x="192" y="156" width="56" height="7" rx="3.5"/><rect class="turn-p" x="192" y="166" width="56" height="7" rx="3.5"/><rect class="turn-s" x="392" y="92" width="56" height="12" rx="6"/><rect class="turn-s" x="392" y="112" width="56" height="12" rx="6"/><rect class="turn-s" x="392" y="132" width="56" height="12" rx="6"/><rect class="turn-s" x="392" y="152" width="56" height="12" rx="6"/><rect class="turn-s" x="392" y="172" width="56" height="12" rx="6"/>
+        <g id="gP"></g><g id="gS"></g>
         <text x="320" y="35" text-anchor="middle" class="big">Φ  magnetic flux</text>
-        <text x="220" y="235" text-anchor="middle">Primary · N₁ turns</text>
-        <text x="420" y="235" text-anchor="middle">Secondary · N₂ turns</text>
-        <text x="92" y="70" text-anchor="middle" class="big" style="fill:#ef4444">11 kV in</text>
-        <text x="548" y="70" text-anchor="middle" class="big" style="fill:#3b82f6">415 V out</text>
+        <text id="nP" x="220" y="235" text-anchor="middle">Primary · N₁ turns</text>
+        <text id="nS" x="420" y="235" text-anchor="middle">Secondary · N₂ turns</text>
+        <text id="inLbl" x="92" y="70" text-anchor="middle" class="big" style="fill:#ef4444">11 kV in</text>
+        <text id="outLbl" x="548" y="70" text-anchor="middle" class="big" style="fill:#3b82f6">415 V out</text>
       </svg>
     </div>
   </div>
@@ -661,6 +678,37 @@ function onScroll(){
     jobs.forEach(j=>j.classList.toggle('lit',j.getBoundingClientRect().top+10<line))}
 }
 addEventListener('scroll',onScroll,{passive:true});onScroll();
+})();
+</script>
+<script>
+(function(){
+const ins=[11000,6350,660,440,240],outs=[415,240,110,50,24,12,6];
+const fmt=v=>v>=1000?(v/1000).toString().replace(/\.0$/,'')+' kV':v+' V';
+let vi=11000,vo=415;
+const ns='http://www.w3.org/2000/svg';
+function sine(x0,x1,yc,a,wl){let d='';for(let x=x0;x<=x1;x+=3){d+=(x===x0?'M':' L')+x+','+(yc-a*Math.sin(2*Math.PI*(x-x0)/wl)).toFixed(1)}return d}
+function amp(v){return 6+26*Math.log10(v)/Math.log10(11000)}
+function coils(g,n,x,cls){g.innerHTML='';const top=84,span=104,h=Math.max(5,Math.min(16,span/n-4)),gap=(span-n*h)/Math.max(1,n-1);
+  for(let i=0;i<n;i++){const r=document.createElementNS(ns,'rect');r.setAttribute('x',x);r.setAttribute('y',(top+i*(h+gap)).toFixed(1));r.setAttribute('width',56);r.setAttribute('height',h.toFixed(1));r.setAttribute('rx',h/2);r.setAttribute('class',cls);g.appendChild(r)}}
+function draw(){
+  const ratio=vi/vo,down=ratio>=1;
+  const big=12,nP=down?big:Math.max(2,Math.round(big*ratio)),nS=down?Math.max(2,Math.round(big/ratio)):big;
+  coils(document.getElementById('gP'),nP,192,'turn-p');coils(document.getElementById('gS'),nS,392,'turn-s');
+  document.getElementById('wIn').setAttribute('d',sine(-40,180,130,amp(vi),50));
+  document.getElementById('wOut').setAttribute('d',sine(400,660,130,amp(vo),50));
+  document.getElementById('inLbl').textContent=fmt(vi)+' in';
+  document.getElementById('outLbl').textContent=fmt(vo)+' out';
+  const t=ratio===1?'Isolation (1 : 1)':down?'Step-down':'Step-up';
+  document.getElementById('xfType').textContent=t;
+  document.getElementById('xfTitle').textContent='How a '+(ratio===1?'1:1 isolation':down?'step-down':'step-up')+' transformer works';
+  const r=down?ratio:1/ratio,rs=(r>=100?r.toFixed(0):r>=10?r.toFixed(1):r.toFixed(2));
+  document.getElementById('xfRatio').textContent=down?rs+' : 1':'1 : '+rs;
+  const pct=(vo-vi)/vi*100;document.getElementById('xfPct').textContent=(pct>0?'+':'−')+Math.abs(pct).toFixed(1)+' %';
+  document.getElementById('nP').textContent='Primary · N₁';document.getElementById('nS').textContent='Secondary · N₂';
+}
+function seg(id,list,get,set){const el=document.getElementById(id);list.forEach(v=>{const b=document.createElement('button');b.type='button';b.textContent=fmt(v);if(v===get())b.className='on';
+  b.onclick=()=>{set(v);[...el.children].forEach(x=>x.classList.toggle('on',x===b));draw()};el.appendChild(b)})}
+seg('vin',ins,()=>vi,v=>vi=v);seg('vout',outs,()=>vo,v=>vo=v);draw();
 })();
 </script>
 </body>

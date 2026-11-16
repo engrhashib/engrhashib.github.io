@@ -379,11 +379,12 @@ section:not(.contact)::before{content:"";position:absolute;top:0;left:0;right:0;
         <div><span class="xf-lab">Direction</span><div class="seg" id="sDir"></div></div>
         <div><span class="xf-lab">Application</span><div class="seg" id="sKind"></div></div>
         <div><span class="xf-lab">Phase</span><div class="seg" id="sPh"></div></div>
+        <div><span class="xf-lab">Core construction</span><div class="seg" id="sCore"></div></div>
         <div><span class="xf-lab">Insulation &amp; cooling</span><div class="seg" id="sCool"></div></div>
-        <div><span class="xf-lab" style="color:#ef4444">Input (primary)</span><div class="seg" id="vin"></div></div>
-        <div><span class="xf-lab" style="color:#3b82f6">Output (secondary)</span><div class="seg" id="vout"></div></div>
+        <div style="grid-column:1/-1"><span class="xf-lab" style="color:#ef4444">Input (primary)</span><div class="seg" id="vin"></div></div>
+        <div style="grid-column:1/-1"><span class="xf-lab" style="color:#3b82f6">Output (secondary)</span><div class="seg" id="vout"></div></div>
       </div>
-      <div class="xf-read"><span id="xfType" class="pill">Step-down</span><span>Turns ratio <b id="xfRatio"></b></span><span>Voltage change <b id="xfPct"></b></span><span>Cooling <b id="xfCool"></b></span><span>Typical rating <b id="xfRate"></b></span><span id="xfVec"></span></div>
+      <div class="xf-read"><span id="xfType" class="pill">Step-down</span><span>Turns ratio <b id="xfRatio"></b></span><span>Voltage change <b id="xfPct"></b></span><span>Cooling <b id="xfCool"></b></span><span>Typical rating <b id="xfRate"></b></span><span id="xfCore"></span><span id="xfVec"></span></div>
       <svg id="xfSvg" viewBox="0 0 640 280" role="img" aria-label="Animated transformer diagram that changes with the selected configuration"></svg>
     </div>
   </div>
@@ -803,7 +804,7 @@ addEventListener('scroll',onScroll,{passive:true});onScroll();
 (function(){
 const svg=document.getElementById('xfSvg');if(!svg)return;
 const INS=[132000,66000,33000,11000,6350,660,440,415,240],OUTS=[132000,66000,33000,11000,415,240,110,50,24,12,6];
-const st={dir:'down',kind:'dist',ph:1,cool:'oil',vi:11000,vo:415};
+const st={dir:'down',kind:'dist',ph:1,cool:'oil',core:'core',vi:11000,vo:415};
 const fmt=v=>v>=1000?(v/1000)+' kV':v+' V';
 const C=['239,68,68','251,191,36','59,130,246'];
 function sine(x0,x1,yc,a,phi){let d='';for(let x=x0;x<=x1;x+=3)d+=(x===x0?'M':' L')+x+','+(yc-a*Math.sin(2*Math.PI*(x-x0)/50+phi)).toFixed(1);return d}
@@ -811,45 +812,55 @@ const amp=v=>5+24*Math.log10(v)/Math.log10(132000);
 function stack(x,w,y0,y1,n,cls){let o='',h=Math.max(4,Math.min(14,(y1-y0)/n-3)),g=n>1?(y1-y0-n*h)/(n-1):0;
   for(let i=0;i<n;i++)o+=`<rect class="${cls}" x="${x-w/2}" y="${(y0+i*(h+g)).toFixed(1)}" width="${w}" height="${h.toFixed(1)}" rx="${(h/2).toFixed(1)}"/>`;return o}
 function render(){
-  const three=st.ph===3,oil=st.cool==='oil',power=st.kind==='power';
-  const xs=three?[170,320,470]:[220,420],x0=xs[0],x1=xs[xs.length-1],top=74,bot=212;
+  const three=st.ph===3,oil=st.cool==='oil',power=st.kind==='power',shell=st.core==='shell';
+  // geometry: limbs carrying windings (wl), outer core extents, core thickness
+  let x0,x1,cw,wl,units=null;
+  if(!shell){const xs=three?[170,320,470]:[220,420];x0=xs[0];x1=xs[xs.length-1];cw=30;wl=xs}
+  else if(!three){x0=200;x1=440;cw=30;wl=[320]}
+  else{x0=155;x1=485;cw=18;units=[[155,265],[265,375],[375,485]];wl=[210,320,430]}
+  const top=74,bot=212,m=shell&&three?35:50;
   const inClip=three?[10,80]:[10,128],outClip=three?[560,630]:[512,630];
   const ratio=st.vi/st.vo,down=ratio>=1,hi=Math.max(st.vi,st.vo),lo=Math.min(st.vi,st.vo),r=hi/lo;
   const pc=oil?'turn-p':'turn-dry',sc=oil?'turn-s':'turn-dry';
   let o=`<defs><clipPath id="ci"><rect x="${inClip[0]}" y="90" width="${inClip[1]-inClip[0]}" height="110"/></clipPath><clipPath id="co"><rect x="${outClip[0]}" y="90" width="${outClip[1]-outClip[0]}" height="110"/></clipPath></defs>`;
   // tank / oil
-  if(oil){const tx=x0-50,tw=x1-x0+100;
-    // radiators
+  if(oil){const tx=x0-m,tw=x1-x0+2*m;
     for(let i=0;i<(power?6:4);i++){o+=`<line x1="${tx-6-i*6}" y1="86" x2="${tx-6-i*6}" y2="${bot}" stroke="#64748b" stroke-width="3"/><line x1="${tx+tw+6+i*6}" y1="86" x2="${tx+tw+6+i*6}" y2="${bot}" stroke="#64748b" stroke-width="3"/>`}
     o+=`<rect x="${tx}" y="52" width="${tw}" height="180" rx="10" fill="rgba(217,119,6,.14)" stroke="#64748b" stroke-width="3"/>`;
     o+=`<line x1="${x1}" y1="40" x2="${x1}" y2="52" stroke="#64748b" stroke-width="4"/><rect x="${x1-45}" y="22" width="80" height="20" rx="10" fill="rgba(217,119,6,.25)" stroke="#64748b" stroke-width="2.5"/><text x="${x1-5}" y="17" text-anchor="middle" style="font-size:11px">Conservator</text>`;
-    for(let i=0;i<7;i++){const bx=x0-30+i*(tw-40)/6,d=(2.5+i%3*.6).toFixed(1);o+=`<circle cx="${bx.toFixed(0)}" r="2.5" fill="rgba(251,191,36,.7)"><animate attributeName="cy" from="${bot+12}" to="60" dur="${d}s" begin="${(i*.4).toFixed(1)}s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0" dur="${d}s" begin="${(i*.4).toFixed(1)}s" repeatCount="indefinite"/></circle>`}
+    for(let i=0;i<7;i++){const bx=x0-m+20+i*(tw-40)/6,d=(2.5+i%3*.6).toFixed(1);o+=`<circle cx="${bx.toFixed(0)}" r="2.5" fill="rgba(251,191,36,.7)"><animate attributeName="cy" from="${bot+12}" to="60" dur="${d}s" begin="${(i*.4).toFixed(1)}s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0" dur="${d}s" begin="${(i*.4).toFixed(1)}s" repeatCount="indefinite"/></circle>`}
     if(power){[tx-30,tx+tw+30].forEach(fx=>{o+=`<g transform="translate(${fx},250)"><circle r="12" fill="none" stroke="#64748b" stroke-width="2"/><g class="fan"><path d="M0,0 L0,-10 A4,4 0 0,1 4,-2 Z M0,0 L8.7,5 A4,4 0 0,1 0,4.5 Z M0,0 L-8.7,5 A4,4 0 0,1 -4,-2.5 Z" fill="#38bdf8"/></g></g>`});
       o+=`<line x1="${x0-10}" y1="44" x2="${x0-10}" y2="52" stroke="#64748b" stroke-width="3"/><rect x="${x0-32}" y="24" width="44" height="20" rx="4" fill="#0f2742" stroke="#fbbf24" stroke-width="1.5"/><text x="${x0-10}" y="38" text-anchor="middle" style="font-size:10px;fill:#fbbf24;font-weight:700">OLTC</text>`}
   }
-  // core
-  o+=`<rect x="${x0}" y="${top}" width="${x1-x0}" height="${bot-top}" fill="none" stroke="#64748b" stroke-width="30" rx="2"/>`;
-  if(three)o+=`<line x1="320" y1="${top}" x2="320" y2="${bot}" stroke="#64748b" stroke-width="30"/>`;
-  if(three){o+=`<rect class="flux" x="${x0}" y="${top}" width="150" height="${bot-top}"/><rect class="flux" x="320" y="${top}" width="150" height="${bot-top}" style="animation-delay:-.4s"/>`}
-  else o+=`<rect class="flux" x="${x0}" y="${top}" width="${x1-x0}" height="${bot-top}"/>`;
+  // core + flux
+  const coreR=(a,b)=>`<rect x="${a}" y="${top}" width="${b-a}" height="${bot-top}" fill="none" stroke="#64748b" stroke-width="${cw}" rx="2"/>`;
+  const limb=xx=>`<line x1="${xx}" y1="${top}" x2="${xx}" y2="${bot}" stroke="#64748b" stroke-width="${cw}"/>`;
+  const flux=(a,b,rev,dl)=>`<rect class="flux" x="${a}" y="${top}" width="${b-a}" height="${bot-top}" style="${rev?'animation-direction:reverse;':''}animation-delay:${dl}s"/>`;
+  const fluxLbl=[];
+  if(!shell){o+=coreR(x0,x1);if(three){o+=limb(320)+flux(x0,320,0,0)+flux(320,x1,0,-.4);fluxLbl.push(245,395)}else{o+=flux(x0,x1,0,0);fluxLbl.push(320)}}
+  else if(!three){o+=coreR(x0,x1)+limb(320)+flux(x0,320,1,0)+flux(320,x1,0,0);fluxLbl.push(260,380)}
+  else{units.forEach(([a,b],i)=>{const c=(a+b)/2;o+=coreR(a,b)+limb(c)+flux(a,c,1,-i*.4)+flux(c,b,0,-i*.4)})}
   // windings
-  const nHi=three?8:12,nLo=Math.max(2,Math.round(nHi/r)),hiCls=down?pc:sc,loCls=down?sc:pc;
-  if(three){xs.forEach(x=>{o+=stack(x,54,88,138,nHi,hiCls)+stack(x,44,146,198,nLo,loCls)});
-    if(!oil)xs.forEach(x=>o+=`<path class="air" d="M${x-36},214 L${x-36},80 M${x+36},214 L${x+36},80"/>`);}
-  else{o+=stack(x0,56,88,198,down?nHi:nLo,pc)+stack(x1,56,88,198,down?nLo:nHi,sc);
-    if(!oil)[x0,x1].forEach(x=>o+=`<path class="air" d="M${x-40},214 L${x-40},80 M${x+40},214 L${x+40},80"/>`);}
+  const nHi=three?8:(shell?10:12),nLo=Math.max(2,Math.round(nHi/r)),hiCls=down?pc:sc,loCls=down?sc:pc;
+  if(!shell&&!three){o+=stack(x0,56,88,198,down?nHi:nLo,pc)+stack(x1,56,88,198,down?nLo:nHi,sc);
+    if(!oil)[x0,x1].forEach(xx=>o+=`<path class="air" d="M${xx-40},214 L${xx-40},80 M${xx+40},214 L${xx+40},80"/>`);}
+  else{const wh=shell?(three?50:76):54,wlo=shell?(three?42:64):44;
+    wl.forEach(xx=>{o+=stack(xx,wh,88,138,nHi,hiCls)+stack(xx,wlo,146,198,nLo,loCls)});
+    if(!oil)wl.forEach(xx=>{const d=wh/2+8;o+=`<path class="air" d="M${xx-d},214 L${xx-d},80 M${xx+d},214 L${xx+d},80"/>`});}
   // waves
   const phs=three?[0,2*Math.PI/3,4*Math.PI/3]:[0],k=three?.75:1;
   phs.forEach((ph,i)=>{const col=three?C[i]:C[0];o+=`<g clip-path="url(#ci)"><path class="wave-in" d="${sine(inClip[0]-50,inClip[1]+10,145,amp(st.vi)*k,ph)}" fill="none" stroke="rgb(${col})" stroke-width="2.6"/></g>`});
   phs.forEach((ph,i)=>{const col=three?C[i]:C[2];o+=`<g clip-path="url(#co)"><path class="wave-out" d="${sine(outClip[0]-50,outClip[1]+10,145,amp(st.vo)*k,ph)}" fill="none" stroke="rgb(${col})" stroke-width="2.6"/></g>`});
-  const ex=three?x0-27:x0-28,ox=three?x1+27:x1+28;
-  o+=`<line x1="${inClip[1]}" y1="145" x2="${oil?x0-50:ex}" y2="145" stroke="#ef4444" stroke-width="2"/><line x1="${oil?x1+50:ox}" y1="145" x2="${outClip[0]}" y2="145" stroke="#3b82f6" stroke-width="2"/>`;
+  const ex=oil?x0-m:x0-cw/2,ox=oil?x1+m:x1+cw/2;
+  o+=`<line x1="${inClip[1]}" y1="145" x2="${ex}" y2="145" stroke="#ef4444" stroke-width="2"/><line x1="${ox}" y1="145" x2="${outClip[0]}" y2="145" stroke="#3b82f6" stroke-width="2"/>`;
   // labels
   const ic=(inClip[0]+inClip[1])/2,oc=(outClip[0]+outClip[1])/2;
   o+=`<text x="${ic}" y="78" text-anchor="middle" class="big" style="fill:#ef4444">${fmt(st.vi)}</text><text x="${ic}" y="96" text-anchor="middle" style="font-size:11px">IN</text>`;
   o+=`<text x="${oc}" y="78" text-anchor="middle" class="big" style="fill:#3b82f6">${fmt(st.vo)}</text><text x="${oc}" y="96" text-anchor="middle" style="font-size:11px">OUT</text>`;
-  if(three)o+=`<text x="245" y="149" text-anchor="middle" class="big">Φ</text><text x="395" y="149" text-anchor="middle" class="big">Φ</text><text x="320" y="270" text-anchor="middle">Three-limb core · HV (upper) and LV (lower) winding per phase</text>`;
-  else o+=`<text x="320" y="149" text-anchor="middle" class="big">Φ</text><text x="${x0}" y="270" text-anchor="middle">Primary · N₁</text><text x="${x1}" y="270" text-anchor="middle">Secondary · N₂</text>`;
+  fluxLbl.forEach(fx=>o+=`<text x="${fx}" y="149" text-anchor="middle" class="big">Φ</text>`);
+  const cap=!shell?(three?'Core-type three-limb core · HV (upper) and LV (lower) winding per phase':''):(three?'Shell-type · windings on each centre limb · flux splits into two return paths':'Shell-type · both windings on the centre limb · flux splits left and right');
+  if(cap)o+=`<text x="320" y="270" text-anchor="middle">${cap}</text>`;
+  else o+=`<text x="${x0}" y="270" text-anchor="middle">Primary · N₁</text><text x="${x1}" y="270" text-anchor="middle">Secondary · N₂</text>`;
   svg.innerHTML=o;
   // readouts
   const iso=ratio===1;
@@ -859,10 +870,10 @@ function render(){
   const pct=(st.vo-st.vi)/st.vi*100;document.getElementById('xfPct').textContent=(pct>0?'+':pct<0?'−':'')+Math.abs(pct).toFixed(1)+' %';
   document.getElementById('xfCool').textContent=oil?(power?'Mineral oil · ONAN/ONAF':'Mineral oil · ONAN'):(power?'Cast resin · AN/AF':'Cast resin · AN (air)');
   document.getElementById('xfRate').textContent=power?'5 – 500 MVA':(three?'25 kVA – 2.5 MVA':'5 – 167 kVA');
-  document.getElementById('xfVec').innerHTML=three?'Vector group <b>'+(down?'Dyn11':'YNd11')+'</b>':'<b>Single-phase</b>';
-  document.getElementById('xfTitle').textContent=`${iso?'Isolation':down?'Step-down':'Step-up'} · ${three?'three-phase':'single-phase'} · ${oil?'oil-immersed':'dry-type'} ${power?'power':'distribution'} transformer`;
+  document.getElementById('xfCore').innerHTML='Construction <b>'+(shell?'Shell-type':'Core-type')+'</b>';document.getElementById('xfVec').innerHTML=three?'Vector group <b>'+(down?'Dyn11':'YNd11')+'</b>':'<b>Single-phase</b>';
+  document.getElementById('xfTitle').textContent=`${iso?'Isolation':down?'Step-down':'Step-up'} · ${three?'three-phase':'single-phase'} · ${shell?'shell-type':'core-type'} · ${oil?'oil-immersed':'dry-type'} ${power?'power':'distribution'} transformer`;
   // sync buttons
-  [['sDir',iso?'':st.dir],['sKind',st.kind],['sPh',String(st.ph)],['sCool',st.cool],['vin',String(st.vi)],['vout',String(st.vo)]].forEach(([id,v])=>[...document.getElementById(id).children].forEach(b=>b.classList.toggle('on',b.dataset.v===v)));
+  [['sDir',iso?'':st.dir],['sKind',st.kind],['sCore',st.core],['sPh',String(st.ph)],['sCool',st.cool],['vin',String(st.vi)],['vout',String(st.vo)]].forEach(([id,v])=>[...document.getElementById(id).children].forEach(b=>b.classList.toggle('on',b.dataset.v===v)));
 }
 function seg(id,opts,on){const el=document.getElementById(id);opts.forEach(([v,l])=>{const b=document.createElement('button');b.type='button';b.dataset.v=String(v);b.textContent=l;b.onclick=()=>{on(v);render()};el.appendChild(b)})}
 seg('sDir',[['down','Step-down'],['up','Step-up']],v=>{if(v===st.dir&&(v==='down'?st.vi>st.vo:st.vo>st.vi))return;
@@ -870,7 +881,8 @@ seg('sDir',[['down','Step-down'],['up','Step-up']],v=>{if(v===st.dir&&(v==='down
   st.dir=st.vi>st.vo?'down':'up'});
 seg('sKind',[['dist','Distribution'],['power','Power']],v=>{st.kind=v;if(v==='dist'&&Math.max(st.vi,st.vo)>33000){if(st.dir==='up'){st.vi=415;st.vo=11000}else{st.vi=11000;st.vo=415}}if(v==='power'&&Math.max(st.vi,st.vo)<33000){if(st.dir==='up'){st.vi=11000;st.vo=132000}else{st.vi=132000;st.vo=33000}}});
 seg('sPh',[[1,'Single-phase'],[3,'Three-phase']],v=>st.ph=v);
-seg('sCool',[['oil','Oil-immersed'],['dry','Dry-type']],v=>st.cool=v);
+seg('sCool',[['oil','Oil-immersed'],['dry','Dry-type (cast resin)']],v=>st.cool=v);
+seg('sCore',[['core','Core-type'],['shell','Shell-type']],v=>st.core=v);
 seg('vin',INS.map(v=>[v,fmt(v)]),v=>{st.vi=v;st.dir=st.vi>=st.vo?'down':'up'});
 seg('vout',OUTS.map(v=>[v,fmt(v)]),v=>{st.vo=v;st.dir=st.vi>=st.vo?'down':'up'});
 render();

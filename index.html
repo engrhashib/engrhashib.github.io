@@ -303,6 +303,46 @@ section:not(.contact)::before{content:"";position:absolute;top:0;left:0;right:0;
 @media(min-width:761px){.about-grid .facts{position:sticky;top:84px}}
 .bring-c h3{font-family:"Space Grotesk",sans-serif;font-size:1.1rem;margin-bottom:6px}
 .bring-c p{font-size:.9rem;color:var(--muted)}
+.ir-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:28px;align-items:start}
+@media(max-width:860px){.ir-grid{grid-template-columns:1fr}}
+.ir-txt h3,.ir-card h3{font-family:"Space Grotesk",sans-serif;font-size:1.15rem;margin-bottom:8px}
+.ir-txt p,.ir-txt li{font-size:.95rem;margin-bottom:8px}
+.ir-txt ol,.ir-card ul{padding-left:20px;margin-bottom:10px}
+.ir-card li{font-size:.93rem;margin-bottom:6px}
+.eq{font-family:"Space Grotesk",monospace;font-size:1.15rem;text-align:center;padding:12px;border:1px dashed var(--accent);border-radius:10px;background:var(--accent-soft);margin:10px 0}
+.ir-small{font-size:.84rem;color:var(--muted)}
+.ir-sim{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:18px}
+.ir-ctrl{display:flex;flex-direction:column;gap:12px;margin-bottom:8px}
+.ir-ctrl label{display:flex;flex-direction:column;gap:6px;font-size:.85rem;font-weight:600;color:var(--muted)}
+.ir-ctrl label b{color:var(--accent);font-size:1rem}
+.ir-ctrl input[type=range]{accent-color:var(--accent);width:100%}
+.ir-ctrl .seg button.on{background:var(--accent);border-color:var(--accent);color:#111}
+#irSvg{width:100%;height:auto;display:block}
+#irSvg text{font-family:Inter,sans-serif;font-size:11px;fill:var(--muted)}
+#irSvg .cur{fill:none;stroke:#ef4444;stroke-width:2.4;stroke-linejoin:round;stroke-dasharray:4000;stroke-dashoffset:4000;animation:drawc 2.2s ease-out forwards}
+@keyframes drawc{to{stroke-dashoffset:0}}
+.ir-read{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}
+.ir-read div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.ir-read span{display:block;font-size:.72rem;color:var(--muted)}
+.ir-read b{font-family:"Space Grotesk",sans-serif;font-size:1.05rem}
+.ir-read b.lo{color:#16a34a}.ir-read b.mid{color:#d97706}.ir-read b.hi{color:#ef4444}
+.ir-bars{display:flex;flex-direction:column;gap:12px}
+.ir-bar{display:grid;grid-template-columns:70px 1fr 150px;gap:4px 14px;align-items:center}
+.ir-bar .lbl{font-weight:700}
+.ir-bar .trk{height:14px;background:var(--line);border-radius:99px;overflow:hidden}
+.ir-bar .trk i{display:block;height:100%;width:0;border-radius:99px;transition:width 1.6s cubic-bezier(.2,.8,.2,1)}
+.ir-bars.in .trk i{width:var(--w)}
+.ir-bar b{font-family:"Space Grotesk",sans-serif}
+.ir-bar small{grid-column:2/4;color:var(--muted);font-size:.8rem;margin-top:-4px}
+@media(max-width:560px){.ir-bar{grid-template-columns:60px 1fr}.ir-bar b{grid-column:2}}
+.ir-cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px}
+@media(max-width:860px){.ir-cols{grid-template-columns:1fr}}
+.ir-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
+.ir-tbl{width:100%;border-collapse:collapse;font-size:.86rem}
+.ir-tbl th,.ir-tbl td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.ir-tbl th{font-family:"Space Grotesk",sans-serif}
+.ir-tbl th:nth-child(2){color:#16a34a}.ir-tbl th:nth-child(3){color:#ef4444}
+.ir-tbl td:first-child{color:var(--muted)}
 </style>
 </head>
 <body>
@@ -321,6 +361,7 @@ section:not(.contact)::before{content:"";position:absolute;top:0;left:0;right:0;
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#analysis">Analysis</a></li>
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#education">Education</a></li>
@@ -585,7 +626,82 @@ section:not(.contact)::before{content:"";position:absolute;top:0;left:0;right:0;
   </div>
 </section>
 
-<section id="gallery" class="alt">
+<section id="analysis" class="alt">
+  <div class="wrap">
+    <div class="bar"></div>
+    <h2>Engineering analysis: low vs high inrush</h2>
+    <p class="sub">A study I carried out on a 10 kVA, 440 V / 110 V single-phase railway signalling transformer, explaining why it is designed for low inrush.</p>
+
+    <div class="ir-grid">
+      <div class="ir-txt reveal">
+        <h3>What inrush is</h3>
+        <p>Inrush is the brief current surge a transformer draws in the first few cycles after switch-on, even with no load connected. It is magnetising current, flowing in the primary only.</p>
+        <ol>
+          <li>Switched on at voltage zero, the core flux tries to reach about <b>2 × its normal peak</b>, plus any remanent magnetism.</li>
+          <li>Electrical steel saturates at about <b>2.0 T</b>. Once saturated, the core loses its inductance and the winding behaves almost like an air-cored coil.</li>
+          <li>With little inductance left, the current spikes on one half of each cycle, then decays over a few cycles.</li>
+        </ol>
+        <p><b>Low inrush</b> is about 5 × rated current or below; <b>high inrush</b> is about 10–15 × or more.</p>
+        <div class="eq">B = V / (4.44 · f · N · A)</div>
+        <p class="ir-small">Design flux density B is the main lever. Lower B means more turns or a bigger core, giving more headroom before saturation.</p>
+      </div>
+
+      <div class="ir-sim reveal">
+        <div class="ir-ctrl">
+          <label>Design flux density <b id="irB">1.08 T</b><input type="range" id="irSlider" min="1.0" max="1.75" step="0.01" value="1.08"></label>
+          <div class="seg" id="irSw"><button type="button" data-v="zero" class="on">Switch at voltage zero (worst)</button><button type="button" data-v="peak">Switch at voltage peak</button></div>
+        </div>
+        <svg id="irSvg" viewBox="0 0 600 300" role="img" aria-label="Simulated inrush current waveform"></svg>
+        <div class="ir-read">
+          <div><span>Peak flux at switch-on</span><b id="irFlux">2.5 T</b></div>
+          <div><span>Inrush peak</span><b id="irPk">4.1 × rated</b></div>
+          <div><span>Classification</span><b id="irCls" class="lo">Low inrush</b></div>
+        </div>
+        <p class="ir-small">Illustrative model calibrated to the study transformer (1.08 T design, 4.1 × inrush). Saturation 2.0 T, remanence about 30 % of design flux.</p>
+      </div>
+    </div>
+
+    <h3 class="sec-label">Rated, inrush and fault current are different things</h3>
+    <div class="ir-bars reveal">
+      <div class="ir-bar"><span class="lbl">Rated</span><div class="trk"><i style="--w:4.6%;background:#22c55e"></i></div><b>23 A · 1 ×</b><small>Set by kVA rating</small></div>
+      <div class="ir-bar"><span class="lbl">Inrush</span><div class="trk"><i style="--w:19%;background:#fbbf24"></i></div><b>≈ 94 A · 4.1 ×</b><small>Set by core flux density</small></div>
+      <div class="ir-bar"><span class="lbl">Fault</span><div class="trk"><i style="--w:100%;background:#ef4444"></i></div><b>≈ 497 A · 21.6 ×</b><small>Set by winding impedance (Z<sub>sc</sub> 4.63 %)</small></div>
+    </div>
+    <p class="ir-small" style="margin-top:8px">I<sub>fault</sub> ≈ I<sub>rated</sub> / Z<sub>sc</sub> = 23 / 0.0463 ≈ 497 A. A low-inrush transformer can still pass about 20 × rated current into a fault, because that comes from the windings, not the core.</p>
+
+    <div class="ir-cols">
+      <div class="ir-card reveal">
+        <h3>Low vs high inrush</h3>
+        <table class="ir-tbl">
+          <tr><th></th><th>Low inrush</th><th>High inrush</th></tr>
+          <tr><td>Surge at switch-on</td><td>≤ 5 ×</td><td>10–15 × or more</td></tr>
+          <tr><td>Design flux density</td><td>1.0–1.3 T</td><td>1.6–1.7 T</td></tr>
+          <tr><td>Turns / core</td><td>More / larger</td><td>Fewer / compact</td></tr>
+          <tr><td>Current density</td><td>0.6–1.5 A/mm²</td><td>2–3 A/mm²</td></tr>
+          <tr><td>Cost</td><td>Higher</td><td>Lower</td></tr>
+          <tr><td>Supply voltage dip</td><td>Small</td><td>Noticeable</td></tr>
+          <tr><td>Protection</td><td>Close-rated fuse</td><td>Slow-blow / D-curve</td></tr>
+          <tr><td>Typical use</td><td>Rail signalling, hospitals, backup supplies</td><td>Factories on a strong grid</td></tr>
+        </table>
+      </div>
+      <div class="ir-card reveal">
+        <h3>Why railways need low inrush</h3>
+        <ul>
+          <li><b>Signals fail safe:</b> a brief power dip can drop relays, turn signals red and stop trains.</li>
+          <li><b>Long trackside cables</b> make the supply voltage sag easily under a surge.</li>
+          <li><b>Tightly graded fuses</b> can trip on a large surge.</li>
+          <li><b>After a power cut</b>, many transformers re-energise together, which generators and UPS units can't handle.</li>
+        </ul>
+        <h3 style="margin-top:16px">Voltage dip example</h3>
+        <p class="ir-small">With an assumed 0.5 Ω supply path: full load 23 A drops 11.5 V (about 428 V at the transformer), while the 94 A inrush drops 47 V (about 393 V, an <b>11 % dip</b>). A high-inrush design at 15 × would dip by about 40 %.</p>
+        <h3 style="margin-top:16px">Design levers, in order</h3>
+        <p class="ir-small">1. Flux density · 2. Core joints (butt or gapped joints leave less remanence) · 3. Steel type (CRGO vs CRNGO) · 4. Lamination thickness (affects loss, barely inrush). Soft-start or controlled switching can also cut inrush externally.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
   <div class="wrap">
     <div class="bar"></div>
     <h2>Work in action</h2>
@@ -902,5 +1018,36 @@ render();
 })();
 </script>
 <script>(function(){const el=document.querySelector('.ph-count');if(!el)return;const v=['$ ···','$ 1··','$ 1·4','$ ✓ costed'];let i=0;setInterval(()=>{i=(i+1)%v.length;el.textContent=v[i]},900)})();</script>
+<script>
+(function(){
+const svg=document.getElementById('irSvg');if(!svg)return;
+const sl=document.getElementById('irSlider');let mode='zero';
+const Bs=2.0,k=10.75,W=600,H=300,L=40,R=585,T=20,Bt=270;
+function sim(Bm){const tau=0.06,n=900,tmax=0.12,w=2*Math.PI*50,Br=0.3*Bm,pts=[],vp=[];let pk=0,fpk=0;
+  for(let j=0;j<=n;j++){const t=tmax*j/n;let phi;
+    if(mode==='zero')phi=-Bm*Math.cos(w*t)+(Bm+Br)*Math.exp(-t/tau);
+    else phi=Bm*Math.sin(w*t)+Br*Math.exp(-t/tau);
+    const a=Math.abs(phi),lin=0.04*Math.min(a,Bs)/1.08,sat=a>Bs?Math.pow(a-Bs,0.75)*k:0,i=Math.sign(phi)*(lin+sat);
+    pts.push([t,i]);vp.push([t,mode==='zero'?Math.sin(w*t):Math.cos(w*t)]);pk=Math.max(pk,Math.abs(i));fpk=Math.max(fpk,a)}
+  return{pts,vp,pk,fpk}}
+function draw(){const Bm=+sl.value,r=sim(Bm);document.getElementById('irB').textContent=Bm.toFixed(2)+' T';
+  const ymax=Math.max(6,Math.ceil(r.pk/2)*2+2),X=t=>L+(t/0.12)*(R-L),Y=v=>(T+Bt)/2-(v/ymax)*((Bt-T)/2);
+  let o='';
+  for(let g=-ymax;g<=ymax;g+=ymax/2){o+=`<line x1="${L}" x2="${R}" y1="${Y(g)}" y2="${Y(g)}" stroke="currentColor" opacity=".12"/><text x="${L-6}" y="${Y(g)+4}" text-anchor="end">${g.toFixed(0)}×</text>`}
+  for(let c=0;c<=6;c++)o+=`<text x="${X(c*0.02)}" y="${Bt+16}" text-anchor="middle">${c*20} ms</text>`;
+  [[5,'#16a34a','Low inrush limit 5×'],[10,'#ef4444','High inrush 10×']].forEach(([v,c,l])=>{if(v<=ymax)o+=`<line x1="${L}" x2="${R}" y1="${Y(v)}" y2="${Y(v)}" stroke="${c}" stroke-dasharray="5 5" opacity=".7"/><text x="${R}" y="${Y(v)-4}" text-anchor="end" style="fill:${c}">${l}</text>`});
+  o+=`<path d="${r.vp.map((p,i)=>(i?'L':'M')+X(p[0]).toFixed(1)+','+Y(p[1]*ymax*0.18).toFixed(1)).join(' ')}" fill="none" stroke="#3b82f6" stroke-width="1.4" opacity=".45"/>`;
+  o+=`<path class="cur" d="${r.pts.map((p,i)=>(i?'L':'M')+X(p[0]).toFixed(1)+','+Y(p[1]).toFixed(1)).join(' ')}"/>`;
+  o+=`<text x="${L+6}" y="${T+12}" style="fill:#ef4444;font-weight:700">Primary current (× rated)</text><text x="${L+6}" y="${T+26}" style="fill:#3b82f6">Supply voltage (scaled)</text>`;
+  svg.innerHTML=o;
+  document.getElementById('irFlux').textContent=r.fpk.toFixed(2)+' T';
+  document.getElementById('irPk').textContent=(r.pk<0.5?r.pk.toFixed(2):r.pk.toFixed(1))+' × rated';
+  const c=document.getElementById('irCls');c.className=r.pk<=5?'lo':r.pk<10?'mid':'hi';c.textContent=r.pk<=5?'Low inrush':r.pk<10?'Medium':'High inrush';}
+let tm;sl.addEventListener('input',()=>{clearTimeout(tm);tm=setTimeout(draw,60)});
+document.querySelectorAll('#irSw button').forEach(b=>b.onclick=()=>{mode=b.dataset.v;document.querySelectorAll('#irSw button').forEach(x=>x.classList.toggle('on',x===b));draw()});
+draw();
+const bars=document.querySelector('.ir-bars');if(bars)new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){bars.classList.add('in');o.disconnect()}}),{threshold:.3}).observe(bars);
+})();
+</script>
 </body>
 </html>

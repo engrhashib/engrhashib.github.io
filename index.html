@@ -343,6 +343,7 @@ section:not(.contact)::before{content:"";position:absolute;top:0;left:0;right:0;
 .ir-tbl th{font-family:"Space Grotesk",sans-serif}
 .ir-tbl th:nth-child(2){color:#16a34a}.ir-tbl th:nth-child(3){color:#ef4444}
 .ir-tbl td:first-child{color:var(--muted)}
+.gallery figure.vid{cursor:default}.gallery video{width:100%;height:240px;object-fit:cover;display:block;background:#000}
 </style>
 </head>
 <body>
@@ -705,15 +706,20 @@ section:not(.contact)::before{content:"";position:absolute;top:0;left:0;right:0;
   <div class="wrap">
     <div class="bar"></div>
     <h2>Work in action</h2>
-    <p class="sub">On the factory floor, on site, at supplier facilities and with the team. Click a photo to enlarge.</p>
+    <p class="sub">At AusRAIL 2026, on the factory floor, on site, at supplier facilities and with the team. Click a photo to enlarge.</p>
     <div class="filters">
       <button class="on" data-f="all">All</button>
+      <button data-f="ausrail">AusRAIL 2026</button>
       <button data-f="factory">Factory &amp; Projects</button>
       <button data-f="visits">Supplier Visits</button>
       <button data-f="recognition">Recognition</button>
       <button data-f="team">Team &amp; Community</button>
     </div>
     <div class="gallery">
+      <figure class="reveal" data-cat="ausrail"><img src="images/ausrail-expo-floor.jpg" alt="At AusRAIL 2026 in Brisbane" loading="lazy"><figcaption>Representing Ironcore Transformers at AusRAIL 2026, Brisbane</figcaption></figure>
+      <figure class="reveal" data-cat="ausrail"><img src="images/ausrail-abb.jpg" alt="AusRAIL 2026 exhibition hall" loading="lazy"><figcaption>Exploring the AusRAIL 2026 exhibition floor, meeting rail suppliers and manufacturers</figcaption></figure>
+      <figure class="reveal" data-cat="ausrail"><img src="images/ausrail-delegate-lounge.jpg" alt="AusRAIL 2026 Hall 1" loading="lazy"><figcaption>Networking with the rail industry at AusRAIL 2026, Hall 1</figcaption></figure>
+      <figure class="reveal vid" data-cat="ausrail"><video src="images/ausrail-walkthrough.mp4" poster="images/ausrail-walkthrough.jpg" controls muted playsinline preload="none"></video><figcaption>▶ Video: walking the AusRAIL 2026 exhibition, Brisbane</figcaption></figure>
       <figure class="reveal" data-cat="factory"><img src="images/coil-production.jpg" alt="Supervising transformer coil insulation preparation on the production floor" loading="lazy"><figcaption>Supervising transformer coil insulation preparation on the production floor</figcaption></figure>
       <figure class="reveal" data-cat="factory"><img src="images/transformer-inspection.jpg" alt="Pre-delivery inspection of 15 kVA single-phase distribution transformers with the client" loading="lazy"><figcaption>Pre-delivery inspection of 15 kVA single-phase distribution transformers with the client</figcaption></figure>
       <figure class="reveal" data-cat="factory"><img src="images/factory-inspection-ppe.jpg" alt="Accompanying senior officials on a factory inspection" loading="lazy"><figcaption>Accompanying senior officials on a factory inspection</figcaption></figure>
